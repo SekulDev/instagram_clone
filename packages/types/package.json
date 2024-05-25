@@ -1,0 +1,11 @@
+{
+    "name": "@repo/types",
+    "version": "0.0.0",
+    "private": true,
+    "devDependencies": {
+        "@azure/msal-browser": "^3.11.1"
+    },
+    "exports": {
+        ".": "./index.d.ts"
+    }
+}

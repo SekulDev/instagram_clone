@@ -1,13 +1,18 @@
-import { Controller, HttpStatus, ParseFilePipeBuilder, Post, UploadedFile, UseInterceptors } from "@nestjs/common";
+import { Controller, HttpStatus, ParseFilePipeBuilder, Post, Req, UploadedFile, UseInterceptors } from "@nestjs/common";
 import { FileInterceptor } from "@nestjs/platform-express";
+import { Request } from "express";
 
 import { UploadFileResponse } from "@repo/types";
 
+import { ContentService } from "./content.service";
+
 @Controller("content")
 export class ContentController {
+    constructor(private contentService: ContentService) {}
+
     @Post("upload")
     @UseInterceptors(FileInterceptor("file"))
-    uploadFile(
+    async uploadFile(
         @UploadedFile(
             new ParseFilePipeBuilder()
                 .addFileTypeValidator({
@@ -21,7 +26,11 @@ export class ContentController {
                 }),
         )
         file: Express.Multer.File,
-    ): UploadFileResponse {
+        @Req() req: Request,
+    ): Promise<UploadFileResponse> {
+        const username = req["user"].login;
+        await this.contentService.onUpload(username, file);
+
         return {
             filename: file.filename,
             size: file.size,

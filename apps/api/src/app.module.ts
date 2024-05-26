@@ -7,6 +7,8 @@ import { AppService } from "./app.service";
 import { EnvModule } from "./env/env.module";
 import { ENV_SCHEMA } from "./env/env.schema";
 import { EnvService } from "./env/env.service";
+import { UserModule } from "./user/user.module";
+import { AuthModule } from './auth/auth.module';
 
 @Module({
     imports: [
@@ -27,10 +29,13 @@ import { EnvService } from "./env/env.service";
                     database: envService.get("API_MYSQL_DATABASE"),
                     entities: [],
                     synchronize: true,
+                    autoLoadEntities: true,
                 };
             },
         }),
         EnvModule,
+        UserModule,
+        AuthModule,
     ],
     controllers: [AppController],
     providers: [AppService],

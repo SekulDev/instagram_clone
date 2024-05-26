@@ -13,6 +13,8 @@ async function bootstrap() {
         },
     });
 
+    app.setGlobalPrefix("api");
+
     const envService = app.get(EnvService);
     const port = envService.get("API_PORT");
 

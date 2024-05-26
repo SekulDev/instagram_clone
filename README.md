@@ -41,7 +41,7 @@
     -   [✅] - getting post
     -   [✅] - getting all posts for one user
     -   [✅] - liking / unliking a post
-    -   [❌] - tags
+    -   [✅] - tags
 -   Comments
     -   [✅] - creating a comment for a post
     -   [✅] - getting all comments for a post

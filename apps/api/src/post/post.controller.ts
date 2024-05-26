@@ -1,7 +1,7 @@
-import { Body, Controller, Get, Param, Post, Req } from "@nestjs/common";
+import { Body, Controller, Get, Param, Patch, Post, Req } from "@nestjs/common";
 import { Request } from "express";
 
-import { CreatePostDto } from "@repo/types";
+import { CreatePostDto, UpdatePostDto } from "@repo/types";
 
 import { PostService } from "./post.service";
 
@@ -23,5 +23,11 @@ export class PostController {
     @Get(":id")
     async findOne(@Param("id") id: number) {
         return await this.postService.findOne(id);
+    }
+
+    @Patch(":id")
+    async update(@Param("id") id: number, @Body() postDto: UpdatePostDto, @Req() req: Request) {
+        const username = req["user"].login;
+        return await this.postService.update(username, id, postDto);
     }
 }

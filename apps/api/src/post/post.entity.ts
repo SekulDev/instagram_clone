@@ -2,6 +2,7 @@ import { Column, CreateDateColumn, Entity, JoinColumn, ManyToOne, OneToMany, Pri
 
 import { Comment } from "src/comment/comment.entity";
 import { Like } from "src/like/like.entity";
+import { Tag } from "src/tag/tag.entity";
 import { User } from "src/user/user.entity";
 
 @Entity("posts")
@@ -27,4 +28,7 @@ export class Post {
 
     @OneToMany(() => Comment, (comment) => comment.post)
     comments: Comment[];
+
+    @OneToMany(() => Tag, (tag) => tag.post)
+    tags: Tag[];
 }

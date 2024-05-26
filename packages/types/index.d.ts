@@ -12,4 +12,10 @@ export type UpdateMeDto = {
 export type CreatePostDto = {
     description: string;
     images: string[];
+    tags: string[];
+};
+
+export type UpdatePostDto = {
+    description: string;
+    tags: string[];
 };

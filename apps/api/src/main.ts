@@ -9,7 +9,7 @@ async function bootstrap() {
         cors: {
             credentials: true,
             methods: ["GET", "POST", "PUT", "DELETE"],
-            origin: "*",
+            origin: "http://localhost:5173",
         },
     });
 

@@ -23,7 +23,6 @@ export class AuthService {
         if (!(await bcrypt.compare(pass, user?.password))) {
             throw new UnauthorizedException();
         }
-        const { password, ...result } = user;
         const token = await this.signJwtForUser(user);
         return {
             access_token: token,

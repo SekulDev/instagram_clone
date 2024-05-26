@@ -18,4 +18,19 @@ export class UserService {
     findByEmailOrLogin(data: string): Promise<User | null> {
         return this.usersRepository.findOne({ where: [{ email: data }, { login: data }] });
     }
+
+    isUserExists(email: string, login: string) {
+        return this.usersRepository.findOne({ where: [{ email: email }, { login: login }] });
+    }
+
+    async createUser(email: string, login: string, label: string, hash: string) {
+        const userEntity = this.usersRepository.create({
+            email,
+            login,
+            label,
+            password: hash,
+        });
+        const user = await this.usersRepository.save(userEntity);
+        return user;
+    }
 }

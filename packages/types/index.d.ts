@@ -6,4 +6,5 @@ export type UploadFileResponse = {
 export type UpdateMeDto = {
     bio: string;
     label: string;
+    avatar_url: string;
 };

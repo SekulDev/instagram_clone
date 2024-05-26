@@ -24,6 +24,9 @@ export class User {
     @Column()
     bio: string;
 
+    @Column()
+    avatar_url: string;
+
     @OneToMany(() => Follow, (follow) => follow.following)
     followers: Follow[];
 

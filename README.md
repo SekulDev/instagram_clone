@@ -1,7 +1,10 @@
 ### TECHSTACK
 
 ![TypeScript](https://img.shields.io/badge/typescript-%23007ACC.svg?style=for-the-badge&logo=typescript&logoColor=white)
+![Turborepo](https://img.shields.io/badge/Turborepo-%230F0813.svg?style=for-the-badge&logo=Turborepo&logoColor=white)
 ![NPM](https://img.shields.io/badge/NPM-%23CB3837.svg?style=for-the-badge&logo=npm&logoColor=white)
+![Zod](https://img.shields.io/badge/zod-%233068b7.svg?style=for-the-badge&logo=zod&logoColor=white)
+![Prettier](https://img.shields.io/badge/prettier-192a32?style=for-the-badge&logo=prettier&logoColor=dc524a)
 
 #### API
 
@@ -15,6 +18,7 @@
 ![Vite](https://img.shields.io/badge/vite-%23646CFF.svg?style=for-the-badge&logo=vite&logoColor=white)
 ![TailwindCSS](https://img.shields.io/badge/tailwindcss-%2338B2AC.svg?style=for-the-badge&logo=tailwind-css&logoColor=white)
 ![SASS](https://img.shields.io/badge/SASS-hotpink.svg?style=for-the-badge&logo=SASS&logoColor=white)
+![Axios](https://img.shields.io/badge/AXIOS-blueviolet.svg?style=for-the-badge&logo=data%3Aimage%2Fpng%3Bbase64%2CiVBORw0KGgoAAAANSUhEUgAAAC4AAAApCAMAAAB9Yuu9AAAAe1BMVEVnHd9oH99qIt9yLeF0MOF%2BP%2BSDRuWMVOeTX%2BiUYOiYZemeb%2BqfceunfOyyje%2B6mPDFqfPJrvTMs%2FTPuPXRu%2FbYxffZxvfZx%2Ffayfjf0Pni1Pnl2Prs4vvs4%2Fvu5fzu5vzv6Pzy6%2F318P349P769%2F76%2BP77%2BP79%2FP%2F%2F%2F%2F9VmOneAAAAg0lEQVR42u3UNQIDMRBDUS06zMycuf8FA61ZTXB%2F%2FQyVIFQVd%2FKhODr3bXzh0MuiznymBoIfGX5pjgi%2BLUHwWQaCdxPE81MDIPh6MpkM4vmzzTt5xTOlVOsYzR%2BpgxC8fSU%2Bk%2FaYv%2BdzIXhnJwQnVmwLjF38YLk96YmLr8RoP6UnteJ32j4RLwzsP6sAAAAASUVORK5CYII%3D)
 
 ### FEATURES IN API
 

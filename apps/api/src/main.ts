@@ -1,5 +1,6 @@
 import { NestFactory } from "@nestjs/core";
-import { json } from "express";
+import * as express from "express";
+import { join } from "path";
 
 import { AppModule } from "./app.module";
 import { EnvService } from "./env/env.service";
@@ -13,12 +14,14 @@ async function bootstrap() {
         },
     });
 
+    app.use("/upload", express.static(join(process.cwd(), "upload")));
+
     app.setGlobalPrefix("api");
 
     const envService = app.get(EnvService);
     const port = envService.get("API_PORT");
 
-    app.use(json());
+    app.use(express.json());
 
     await app.listen(port);
 }

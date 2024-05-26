@@ -9,6 +9,7 @@ import { EnvModule } from "./env/env.module";
 import { ENV_SCHEMA } from "./env/env.schema";
 import { EnvService } from "./env/env.service";
 import { UserModule } from "./user/user.module";
+import { ContentModule } from './content/content.module';
 
 @Module({
     imports: [
@@ -36,6 +37,7 @@ import { UserModule } from "./user/user.module";
         EnvModule,
         UserModule,
         AuthModule,
+        ContentModule,
     ],
     controllers: [AppController],
     providers: [AppService],

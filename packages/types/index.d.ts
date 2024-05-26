@@ -8,3 +8,8 @@ export type UpdateMeDto = {
     label: string;
     avatar_url: string;
 };
+
+export type CreatePostDto = {
+    description: string;
+    images: string[];
+};

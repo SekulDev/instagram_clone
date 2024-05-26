@@ -11,6 +11,7 @@ import { EnvService } from "./env/env.service";
 import { UserModule } from "./user/user.module";
 import { ContentModule } from './content/content.module';
 import { FollowModule } from './follow/follow.module';
+import { PostModule } from './post/post.module';
 
 @Module({
     imports: [
@@ -40,6 +41,7 @@ import { FollowModule } from './follow/follow.module';
         AuthModule,
         ContentModule,
         FollowModule,
+        PostModule,
     ],
     controllers: [AppController],
     providers: [AppService],

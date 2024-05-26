@@ -1,6 +1,8 @@
 import { Body, Controller, Get, Param, Patch, Req } from "@nestjs/common";
 import { Request } from "express";
 
+import { UpdateMeDto } from "@repo/types";
+
 import { UserService } from "./user.service";
 
 @Controller("user")
@@ -19,7 +21,7 @@ export class UserController {
     }
 
     @Patch("@me")
-    async updateMe(@Req() req: Request, @Body() userDto: Record<string, any>) {
+    async updateMe(@Req() req: Request, @Body() userDto: UpdateMeDto) {
         const username = req["user"].login;
         return await this.userService.updateUser(username, userDto);
     }

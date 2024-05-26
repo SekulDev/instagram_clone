@@ -1,5 +1,7 @@
 import { IsEmail } from "class-validator";
-import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm";
+
+import { Follow } from "src/follow/follow.entity";
 
 @Entity("users")
 export class User {
@@ -21,4 +23,10 @@ export class User {
 
     @Column()
     bio: string;
+
+    @OneToMany(() => Follow, (follow) => follow.following)
+    followers: Follow[];
+
+    @OneToMany(() => Follow, (follow) => follow.follower)
+    following: Follow[];
 }

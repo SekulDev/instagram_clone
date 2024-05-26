@@ -10,6 +10,7 @@ import { ENV_SCHEMA } from "./env/env.schema";
 import { EnvService } from "./env/env.service";
 import { UserModule } from "./user/user.module";
 import { ContentModule } from './content/content.module';
+import { FollowModule } from './follow/follow.module';
 
 @Module({
     imports: [
@@ -38,6 +39,7 @@ import { ContentModule } from './content/content.module';
         UserModule,
         AuthModule,
         ContentModule,
+        FollowModule,
     ],
     controllers: [AppController],
     providers: [AppService],

@@ -2,6 +2,8 @@ import { Injectable, NotFoundException } from "@nestjs/common";
 import { InjectRepository } from "@nestjs/typeorm";
 import { Repository } from "typeorm";
 
+import { UpdateMeDto } from "@repo/types";
+
 import { User } from "./user.entity";
 
 @Injectable()
@@ -24,14 +26,20 @@ export class UserService {
     }
 
     async getUserByLogin(login: string) {
-        const user = await this.usersRepository.findOneBy({ login });
+        // const user = await this.usersRepository.findOneBy({ login });
+        const user = await this.usersRepository
+            .createQueryBuilder("user")
+            .where("user.login = :login", { login })
+            .loadRelationCountAndMap("user.followersCount", "user.followers")
+            .loadRelationCountAndMap("user.followingCount", "user.following")
+            .getOne();
         if (!user) {
             throw new NotFoundException("No user for " + login + " username");
         }
         return user;
     }
 
-    async updateUser(login: string, userDto: Record<string, any>) {
+    async updateUser(login: string, userDto: UpdateMeDto) {
         const user = await this.usersRepository.findOneBy({ login });
         if (!user) {
             throw new NotFoundException("No user for " + login + " username");

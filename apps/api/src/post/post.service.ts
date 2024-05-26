@@ -4,7 +4,6 @@ import { Repository } from "typeorm";
 
 import { CreatePostDto } from "@repo/types";
 
-import { User } from "src/user/user.entity";
 import { UserService } from "src/user/user.service";
 
 import { Post } from "./post.entity";

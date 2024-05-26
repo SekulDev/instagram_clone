@@ -13,6 +13,7 @@ import { FollowModule } from "./follow/follow.module";
 import { LikeModule } from "./like/like.module";
 import { PostModule } from "./post/post.module";
 import { UserModule } from "./user/user.module";
+import { CommentModule } from './comment/comment.module';
 
 @Module({
     imports: [
@@ -44,6 +45,7 @@ import { UserModule } from "./user/user.module";
         FollowModule,
         PostModule,
         LikeModule,
+        CommentModule,
     ],
     controllers: [AppController],
     providers: [AppService],

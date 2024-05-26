@@ -5,13 +5,14 @@ import { TypeOrmModule } from "@nestjs/typeorm";
 import { AppController } from "./app.controller";
 import { AppService } from "./app.service";
 import { AuthModule } from "./auth/auth.module";
+import { ContentModule } from "./content/content.module";
 import { EnvModule } from "./env/env.module";
 import { ENV_SCHEMA } from "./env/env.schema";
 import { EnvService } from "./env/env.service";
+import { FollowModule } from "./follow/follow.module";
+import { LikeModule } from "./like/like.module";
+import { PostModule } from "./post/post.module";
 import { UserModule } from "./user/user.module";
-import { ContentModule } from './content/content.module';
-import { FollowModule } from './follow/follow.module';
-import { PostModule } from './post/post.module';
 
 @Module({
     imports: [
@@ -42,6 +43,7 @@ import { PostModule } from './post/post.module';
         ContentModule,
         FollowModule,
         PostModule,
+        LikeModule,
     ],
     controllers: [AppController],
     providers: [AppService],

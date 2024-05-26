@@ -2,7 +2,6 @@ import { BadRequestException, Injectable, NotFoundException, UnauthorizedExcepti
 import { InjectRepository } from "@nestjs/typeorm";
 import { Repository } from "typeorm";
 
-import { User } from "src/user/user.entity";
 import { UserService } from "src/user/user.service";
 
 import { Follow } from "./follow.entity";

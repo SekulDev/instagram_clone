@@ -2,6 +2,7 @@ import { IsEmail } from "class-validator";
 import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm";
 
 import { Follow } from "src/follow/follow.entity";
+import { Like } from "src/like/like.entity";
 import { Post } from "src/post/post.entity";
 
 @Entity("users")
@@ -36,4 +37,7 @@ export class User {
 
     @OneToMany(() => Post, (post) => post.author)
     posts: Post[];
+
+    @OneToMany(() => Like, (like) => like.user)
+    likes: Like[];
 }

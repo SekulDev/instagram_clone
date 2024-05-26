@@ -1,5 +1,6 @@
-import { Column, CreateDateColumn, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
+import { Column, CreateDateColumn, Entity, JoinColumn, ManyToOne, OneToMany, PrimaryGeneratedColumn } from "typeorm";
 
+import { Like } from "src/like/like.entity";
 import { User } from "src/user/user.entity";
 
 @Entity("posts")
@@ -19,4 +20,7 @@ export class Post {
 
     @Column({ type: "json" })
     images: string[];
+
+    @OneToMany(() => Like, (like) => like.post)
+    likes: Like[];
 }

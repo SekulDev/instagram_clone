@@ -32,6 +32,7 @@ export class UserService {
             .where("user.login = :login", { login })
             .loadRelationCountAndMap("user.followersCount", "user.followers")
             .loadRelationCountAndMap("user.followingCount", "user.following")
+            .loadRelationCountAndMap("user.postsCount", "user.posts")
             .getOne();
         if (!user) {
             throw new NotFoundException("No user for " + login + " username");

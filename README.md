@@ -25,8 +25,7 @@
 -   Authorization
     -   [✅] - creating new accounts
     -   [✅] - logging to accounts
-    -   [❌] - logout
-    -   [❌] - change password
+    -   [✅] - change password
 -   User
     -   [✅] - getting user data, follows count, following count, posts count
     -   [✅] - updating avatar, bio, account label

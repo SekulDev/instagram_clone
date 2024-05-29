@@ -1,5 +1,6 @@
 import { Injectable, NotFoundException } from "@nestjs/common";
 import { InjectRepository } from "@nestjs/typeorm";
+import * as crypto from "crypto";
 import { Repository } from "typeorm";
 
 import { UpdateMeDto } from "@repo/types";
@@ -23,6 +24,36 @@ export class UserService {
 
     isUserExists(email: string, login: string) {
         return this.usersRepository.findOne({ where: [{ email: email }, { login: login }] });
+    }
+
+    private async generateUrl(email: string) {
+        const uid = crypto.randomBytes(18).toString("hex");
+        const exists = await this.usersRepository.exists({ where: { change_password_url: uid } });
+        if (exists) {
+            return this.generateUrl(email);
+        }
+        await this.usersRepository.update({ email: email }, { change_password_url: uid });
+        return uid;
+    }
+
+    async createChangePasswordUrl(email: string) {
+        const user = await this.usersRepository.findOne({ where: { email: email } });
+        if (!user) {
+            throw new NotFoundException();
+        }
+        return await this.generateUrl(email);
+    }
+
+    async changeUserPassword(uid: string, passwordHash: string) {
+        const user = await this.usersRepository.findOne({ where: { change_password_url: uid } });
+        if (!user) {
+            throw new NotFoundException();
+        }
+        await this.usersRepository.update(
+            { change_password_url: uid },
+            { change_password_url: null, password: passwordHash },
+        );
+        return user.email;
     }
 
     async getUserByLogin(login: string) {

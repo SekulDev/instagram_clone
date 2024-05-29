@@ -19,8 +19,8 @@ export class UserController {
     }
 
     @Get(":username")
-    async findOne(@Param("username") username: string) {
-        return await this.userService.getUserByLogin(username);
+    async findOne(@Param("username") username: string, @Req() req: Request) {
+        return await this.userService.getUserByLogin(username, req["user"].id);
     }
 
     @Get("search/:input")

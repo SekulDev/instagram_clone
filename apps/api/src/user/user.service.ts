@@ -16,16 +16,19 @@ export class UserService {
         private usersRepository: Repository<User>,
     ) {}
 
-    findOne(id: number): Promise<User | null> {
-        return this.usersRepository.findOneBy({ id });
+    async findOne(id: number): Promise<User | null> {
+        return await this.usersRepository.findOneBy({ id });
     }
 
-    findByEmailOrLogin(data: string): Promise<User | null> {
-        return this.usersRepository.findOne({ select: { password: true }, where: [{ email: data }, { login: data }] });
+    async findByEmailOrLogin(data: string): Promise<User | null> {
+        return await this.usersRepository.findOne({
+            select: this.usersRepository.metadata.columns.map((column) => column.propertyName as keyof User),
+            where: [{ email: data }, { login: data }],
+        });
     }
 
-    isUserExists(email: string, login: string) {
-        return this.usersRepository.findOne({ where: [{ email: email }, { login: login }] });
+    async isUserExists(email: string, login: string) {
+        return await this.usersRepository.findOne({ where: [{ email: email }, { login: login }] });
     }
 
     private async generateUrl(email: string) {
@@ -58,14 +61,21 @@ export class UserService {
         return user.email;
     }
 
-    async getUserByLogin(login: string) {
-        const user = await this.usersRepository
+    async getUserByLogin(login: string, currentUserId?: number) {
+        const queryBuilder = this.usersRepository
             .createQueryBuilder("user")
             .where("user.login = :login", { login })
             .loadRelationCountAndMap("user.followersCount", "user.followers")
             .loadRelationCountAndMap("user.followingCount", "user.following")
-            .loadRelationCountAndMap("user.postsCount", "user.posts")
-            .getOne();
+            .loadRelationCountAndMap("user.postsCount", "user.posts");
+
+        if (currentUserId) {
+            queryBuilder.loadRelationCountAndMap("user.is_following", "user.followers", "follow", (query) => {
+                return query.where("follow.follower = :id", { id: currentUserId });
+            });
+        }
+
+        const user = await queryBuilder.getOne();
         if (!user) {
             throw new NotFoundException("No user for " + login + " username");
         }

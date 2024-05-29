@@ -8,7 +8,11 @@ export const ENV_SCHEMA = z
         API_MYSQL_USER: z.string().default("root"),
         API_MYSQL_PASSWORD: z.string().default(""),
         API_MYSQL_DATABASE: z.string(),
+        API_MAIL_SERVER: z.string(),
+        API_MAIL_USER: z.string(),
+        API_MAIL_PASSWORD: z.string(),
         API_JWT_SECRET: z.string(),
+        VUE_URL: z.string(),
     })
     .readonly();
 

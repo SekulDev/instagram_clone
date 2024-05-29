@@ -1,3 +1,5 @@
+import { MailerModule } from "@nestjs-modules/mailer";
+import { HandlebarsAdapter } from "@nestjs-modules/mailer/dist/adapters/handlebars.adapter";
 import { Module } from "@nestjs/common";
 import { ConfigModule } from "@nestjs/config";
 import { TypeOrmModule } from "@nestjs/typeorm";
@@ -21,6 +23,31 @@ import { UserModule } from "./user/user.module";
         ConfigModule.forRoot({
             validate: (env) => ENV_SCHEMA.parse(env),
             isGlobal: true,
+        }),
+        MailerModule.forRootAsync({
+            imports: [EnvModule],
+            inject: [EnvService],
+            useFactory: (envService: EnvService) => ({
+                transport: {
+                    host: envService.get("API_MAIL_SERVER"),
+                    port: 465,
+                    secure: true,
+                    auth: {
+                        user: envService.get("API_MAIL_USER"),
+                        pass: envService.get("API_MAIL_PASSWORD"),
+                    },
+                },
+                defaults: {
+                    from: '"Projekt instagram" <' + envService.get("API_MAIL_USER") + ">",
+                },
+                template: {
+                    dir: process.cwd() + "/templates",
+                    adapter: new HandlebarsAdapter(),
+                    // options: {
+                    //     strict: true,
+                    // },
+                },
+            }),
         }),
         TypeOrmModule.forRootAsync({
             imports: [EnvModule],

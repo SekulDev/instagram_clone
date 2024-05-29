@@ -20,8 +20,8 @@ import { ContentService } from "./content.service";
                     cb(null, "./upload");
                 },
                 filename(req, file, cb) {
-                    let customFileName = crypto.randomBytes(18).toString("hex");
-                    let fileExtension = extname(file.originalname).split(".")[1];
+                    const customFileName = crypto.randomBytes(18).toString("hex");
+                    const fileExtension = extname(file.originalname).split(".")[1];
                     cb(null, customFileName + "." + fileExtension);
                 },
             }),

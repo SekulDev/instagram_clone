@@ -4,7 +4,6 @@ import { Repository } from "typeorm";
 
 import { CreatePostDto, UpdatePostDto } from "@repo/types";
 
-import { Tag } from "src/tag/tag.entity";
 import { TagService } from "src/tag/tag.service";
 import { UserService } from "src/user/user.service";
 
@@ -45,7 +44,7 @@ export class PostService {
 
     async update(username: string, postId: number, dto: UpdatePostDto) {
         const user = await this.usersService.getUserByLogin(username);
-        let post = await this.findOne(postId);
+        const post = await this.findOne(postId);
         if (post.author.id !== user.id) {
             throw new UnauthorizedException("Cannot edit not own posts");
         }

@@ -3,7 +3,6 @@ import { InjectRepository } from "@nestjs/typeorm";
 import { Repository } from "typeorm";
 
 import { Post } from "src/post/post.entity";
-import { PostService } from "src/post/post.service";
 
 import { Tag } from "./tag.entity";
 

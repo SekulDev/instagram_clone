@@ -1,5 +1,5 @@
 import { IsEmail } from "class-validator";
-import { Column, Entity, IsNull, OneToMany, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm";
 
 import { Comment } from "src/comment/comment.entity";
 import { Follow } from "src/follow/follow.entity";

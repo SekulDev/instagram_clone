@@ -30,7 +30,7 @@
     -   [✅] - getting user data, follows count, following count, posts count
     -   [✅] - updating avatar, bio, account label
     -   [✅] - following / unfollowing user
-    -   [❌] - searching user
+    -   [✅] - searching user
 -   Content
     -   [✅] - uploading images
     -   [✅] - getting uploaded images

@@ -5,6 +5,8 @@ import { Repository } from "typeorm";
 
 import { UpdateMeDto } from "@repo/types";
 
+import { Follow } from "src/follow/follow.entity";
+
 import { User } from "./user.entity";
 
 @Injectable()
@@ -93,5 +95,25 @@ export class UserService {
         });
         const user = await this.usersRepository.save(userEntity);
         return user;
+    }
+
+    async searchUser(input: string, limit: number) {
+        const LAVENSHTEIN_MAX_DISTANCE = 5;
+        const users = await this.usersRepository
+            .createQueryBuilder("user")
+            .where("levenshtein(LOWER(user.login), :input) <= :max OR levenshtein(LOWER(user.label), :input) <= :max", {
+                max: LAVENSHTEIN_MAX_DISTANCE,
+                input: input,
+            })
+            .loadRelationCountAndMap("user.followersCount", "user.followers")
+            .loadRelationCountAndMap("user.followingCount", "user.following")
+            .loadRelationCountAndMap("user.postsCount", "user.posts")
+            .addSelect((subQuery) => {
+                return subQuery.select("COUNT(f.following)", "count").from(Follow, "f").where("f.following = user.id");
+            }, "followersCount")
+            .orderBy("followersCount", "DESC")
+            .limit(limit)
+            .getMany();
+        return users;
     }
 }

@@ -58,7 +58,7 @@ export class AuthService {
             template: "index",
             context: {
                 content: `
-                    Aby zmienić swoje hasło kliknij w ten <a href="${this.envService.get("VUE_URL")}/change-password/${uid}">link</a>!<br>
+                    Aby zmienić swoje hasło kliknij w ten <a href="${this.envService.get("FRONTEND_URL")}/auth/change-password/${uid}">link</a>!<br>
                     Jeśli ta wiadomość nie powinna trafić do ciebie - Usuń ją!
                 `,
             },

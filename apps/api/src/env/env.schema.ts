@@ -12,7 +12,7 @@ export const ENV_SCHEMA = z
         API_MAIL_USER: z.string(),
         API_MAIL_PASSWORD: z.string(),
         API_JWT_SECRET: z.string(),
-        VUE_URL: z.string(),
+        FRONTEND_URL: z.string(),
     })
     .readonly();
 

@@ -39,7 +39,7 @@ const onSubmit = form.handleSubmit(async (values) => {
         errorMessage.value = true;
         return;
     }
-    router.push("Home");
+    router.push({ name: "Home" });
 });
 
 const { value: username } = useField<string>("username");
@@ -90,7 +90,10 @@ watch<[typeof username, typeof password]>([username, password], (newValue) => {
                         <span v-if="errorMessage" class="text-destructive text-center text-sm font-thin">
                             Niestety wprowadzone hasło lub nazwa użytkownika są niepoprawne
                         </span>
-                        <RouterLink to="ForgotPassword" class="text-primary mt-6 text-center text-sm font-thin">
+                        <RouterLink
+                            :to="{ name: 'ForgotPassword' }"
+                            class="text-primary mt-6 text-center text-sm font-thin"
+                        >
                             Nie pamiętasz hasła?
                         </RouterLink>
                     </div>
@@ -99,7 +102,7 @@ watch<[typeof username, typeof password]>([username, password], (newValue) => {
         </Card>
         <Card class="w-[100%]">
             <CardContent class="flex items-center justify-center gap-2 p-5">
-                Nie masz konta? <RouterLink to="Register" class="text-primary">Zarejestruj się</RouterLink>
+                Nie masz konta? <RouterLink :to="{ name: 'Register' }" class="text-primary">Zarejestruj się</RouterLink>
             </CardContent>
         </Card>
     </div>

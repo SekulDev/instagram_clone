@@ -41,7 +41,7 @@ const onSubmit = form.handleSubmit(async (values) => {
         errorMessage.value = true;
         return;
     }
-    router.push("Home");
+    router.push({ name: "Home" });
 });
 
 const { value: email } = useField<string>("email");
@@ -124,7 +124,7 @@ watch([email, label, login, password], async (newValue) => {
         </Card>
         <Card class="w-[100%]">
             <CardContent class="flex items-center justify-center gap-2 p-5">
-                Masz konto? <RouterLink to="Login" class="text-primary">Zaloguj się</RouterLink>
+                Masz konto? <RouterLink :to="{ name: 'Login' }" class="text-primary">Zaloguj się</RouterLink>
             </CardContent>
         </Card>
     </div>

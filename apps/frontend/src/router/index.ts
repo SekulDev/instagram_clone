@@ -63,6 +63,18 @@ const router = createRouter({
 
 router.beforeEach(async (to, _from, next) => {
     if (!to.meta.isPublic) {
+        const { isReady, $subscribe } = useUserStore();
+
+        if (!isReady) {
+            await new Promise<void>((res) => {
+                $subscribe((_mutation, state) => {
+                    if (state.isReady) {
+                        res();
+                    }
+                });
+            });
+        }
+
         const { user } = useUserStore();
 
         if (!user) {

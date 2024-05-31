@@ -8,12 +8,14 @@ import { getUser } from "@/services/user";
 interface UserStore {
     user: User | null;
     isAuthenticated: boolean;
+    isReady: boolean;
 }
 
 export const useUserStore = defineStore("user", () => {
     const state = reactive<UserStore>({
         user: null,
         isAuthenticated: false,
+        isReady: false,
     });
 
     const updateStoreUser = async () => {
@@ -24,6 +26,7 @@ export const useUserStore = defineStore("user", () => {
         } else {
             logout();
         }
+        state.isReady = true;
     };
 
     updateStoreUser();

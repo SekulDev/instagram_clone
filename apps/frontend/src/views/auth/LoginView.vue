@@ -7,6 +7,7 @@ import * as z from "zod";
 
 import { login } from "@/services/auth";
 
+import InstagramTextLogo from "@/components/InstagramTextLogo.vue";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { FormControl, FormField, FormItem } from "@/components/ui/form";
@@ -53,10 +54,10 @@ watch<[typeof username, typeof password]>([username, password], (newValue) => {
 </script>
 
 <template>
-    <div class="flex flex-col items-center gap-2 sm:max-w-[11/12] md:max-w-[350px]">
-        <Card class="p-6">
+    <div class="flex flex-col items-center gap-2 sm:max-w-[11/12] md:w-[350px]">
+        <Card class="w-[100%] p-6">
             <CardHeader class="p-10">
-                <img src="@/assets/img/instagram-text-icon.png" alt="text-logo" />
+                <InstagramTextLogo class="h-auto w-[100%]" />
             </CardHeader>
             <CardContent class="pb-0">
                 <form class="flex flex-col gap-2" @submit="onSubmit">

@@ -7,6 +7,7 @@ import * as z from "zod";
 
 import { register } from "@/services/auth";
 
+import InstagramTextLogo from "@/components/InstagramTextLogo.vue";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { FormControl, FormField, FormItem } from "@/components/ui/form";
@@ -64,11 +65,11 @@ watch([email, label, login, password], async (newValue) => {
 </script>
 
 <template>
-    <div class="flex flex-col items-center gap-2 sm:max-w-[11/12] md:max-w-[350px]">
-        <Card class="p-6">
+    <div class="flex flex-col items-center gap-2 sm:max-w-[11/12] md:w-[350px]">
+        <Card class="w-[100%] p-6">
             <CardHeader class="p-10 pb-6">
                 <CardTitle>
-                    <img src="@/assets/img/instagram-text-icon.png" alt="text-logo" />
+                    <InstagramTextLogo class="h-auto w-[100%]" />
                 </CardTitle>
                 <CardDescription class="text-secondary-foreground text-center font-semibold">
                     Zarejestruj się, aby przeglądać zdjęcia i filmy znajomych

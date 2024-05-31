@@ -1,0 +1,12 @@
+export { default as MoreIcon } from "./MoreIcon.vue";
+export { default as HomeIcon } from "./HomeIcon.vue";
+export { default as SearchIcon } from "./SearchIcon.vue";
+export { default as ExploreIcon } from "./ExploreIcon.vue";
+export { default as ReelsIcon } from "./ReelsIcon.vue";
+export { default as DirectMessagesIcon } from "./DirectMessagesIcon.vue";
+export { default as NotificationIcon } from "./NotificationIcon.vue";
+export { default as CreateIcon } from "./CreateIcon.vue";
+export { default as SettingsIcon } from "./SettingsIcon.vue";
+export { default as DarkModeIcon } from "./DarkModeIcon.vue";
+export { default as LightModeIcon } from "./LightModeIcon.vue";
+export { type IconProps } from "./props";

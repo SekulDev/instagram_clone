@@ -1,0 +1,14 @@
+{
+    "name": "@repo/icons",
+    "version": "1.0.0",
+    "description": "",
+    "private": true,
+    "type": "module",
+    "author": "SekulDev",
+    "devDependencies": {
+        "@repo/typescript-config": "*"
+    },
+    "exports": {
+        ".": "./src/index.ts"
+    }
+}

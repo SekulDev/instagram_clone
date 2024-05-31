@@ -1,6 +1,7 @@
 import { User } from "@/types";
 import { defineStore } from "pinia";
 import { reactive, toRefs } from "vue";
+import { useRouter } from "vue-router";
 
 import { logout } from "@/services/auth";
 import { getUser } from "@/services/user";
@@ -38,6 +39,8 @@ export const useUserStore = defineStore("user", () => {
     function onLogout() {
         state.user = null;
         state.isAuthenticated = false;
+        const router = useRouter();
+        router.push({ name: "Login" });
     }
 
     return {

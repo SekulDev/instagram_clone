@@ -1,3 +1,6 @@
+import { HTMLAttributes } from "vue";
+import { RouteLocationRaw, RouterLink } from "vue-router";
+
 export type ApiResponse<T> = {
     data: T;
     success: boolean;
@@ -13,4 +16,14 @@ export type User = {
     followersCount: number;
     followingCount: number;
     postsCount: number;
+};
+
+export type NavbarItemProps = {
+    class?: HTMLAttributes["class"];
+    style?: HTMLAttributes["style"];
+    route?: RouteLocationRaw;
+    label: string;
+    icon?: any;
+    avatar?: string;
+    onClick?: () => void;
 };

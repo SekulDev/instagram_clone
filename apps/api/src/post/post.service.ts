@@ -22,6 +22,7 @@ export class PostService {
             .createQueryBuilder("post")
             .where("post.id = :id", { id })
             .loadRelationCountAndMap("post.likes", "post.likes")
+            .loadRelationCountAndMap("post.comments", "post.comments")
             .leftJoinAndSelect("post.author", "author")
             .leftJoinAndSelect("post.tags", "tags")
             .getOne();
@@ -37,6 +38,7 @@ export class PostService {
             .createQueryBuilder("post")
             .where("post.author = :id", { id: user.id })
             .loadRelationCountAndMap("post.likes", "post.likes")
+            .loadRelationCountAndMap("post.comments", "post.comments")
             .leftJoinAndSelect("post.tags", "tags")
             .getMany();
         return posts;

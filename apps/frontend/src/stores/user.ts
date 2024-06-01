@@ -40,7 +40,9 @@ export const useUserStore = defineStore("user", () => {
         state.user = null;
         state.isAuthenticated = false;
         const router = useRouter();
-        router.push({ name: "Login" });
+        if (router) {
+            router.push({ name: "Login" });
+        }
     }
 
     return {

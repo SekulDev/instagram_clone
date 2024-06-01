@@ -50,7 +50,7 @@ const routes: Array<RouteRecordRaw> = [
                 component: () => import("@/views/auth/ForgotPasswordView.vue"),
             },
             {
-                path: "/change-password",
+                path: "/change-password/:uid",
                 name: "ChangePassword",
                 component: () => import("@/views/auth/ChangePasswordView.vue"),
             },

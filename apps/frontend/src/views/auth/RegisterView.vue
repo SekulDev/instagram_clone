@@ -55,7 +55,6 @@ watch([email, label, login, password], async (newValue) => {
     if (newValue[0].length == 0 || newValue[1].length == 0 || newValue[2].length == 0 || newValue[3].length == 0)
         return (disabled.value = true);
     const isEmailValid = await form.validateField("email");
-    console.log(isEmailValid.valid);
     if (!isEmailValid.valid) {
         disabled.value = true;
         return;

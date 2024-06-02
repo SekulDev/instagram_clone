@@ -33,7 +33,7 @@ async function onFollowClick(isFollowing: number) {
 }
 </script>
 <template>
-    <div class="flex h-[410px] w-[100%] gap-20 border-b px-4 pt-7">
+    <div class="flex h-[410px] w-[100%] gap-20 border-b px-10 pt-3">
         <Avatar size="lg">
             <template v-if="props.user">
                 <AvatarImage :src="props.user.avatar_url" alt="avatar" />
@@ -45,10 +45,10 @@ async function onFollowClick(isFollowing: number) {
                 <Skeleton class="h-full w-full" />
             </template>
         </Avatar>
-        <div class="flex w-full flex-col gap-10">
+        <div class="flex w-full flex-col gap-6">
             <div v-if="props.user" class="flex items-center gap-8">
                 <span class="text-lg">{{ props.user.login }}</span>
-                <Button size="sm" class="text-foreground" variant="secondary" v-if="props.isMe" as-child>
+                <Button size="sm" class="text-white" variant="secondary" v-if="props.isMe" as-child>
                     <RouterLink :to="{ name: 'Settings' }"> Edytuj profil </RouterLink>
                 </Button>
                 <template v-else>
@@ -63,10 +63,16 @@ async function onFollowClick(isFollowing: number) {
                     <Button
                         @click="onFollowClick(props.user.is_following)"
                         size="sm"
-                        variant="default"
+                        class="text-white"
+                        variant="secondary"
                         v-if="props.user.is_following == 1"
                     >
                         Przestań obserwować
+                    </Button>
+                    <Button size="sm" class="text-white" variant="secondary" v-if="props.user.is_following == 1">
+                        <!-- <RouterLink :to="{name: 'Messages', params: {username: props.user.login}}"> -->
+                        Wyślij wiadomość
+                        <!-- </RouterLink> -->
                     </Button>
                 </template>
             </div>

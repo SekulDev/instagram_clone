@@ -107,7 +107,7 @@ export class UserService {
     }
 
     async searchUser(input: string, limit: number) {
-        const LAVENSHTEIN_MAX_DISTANCE = 5;
+        const LAVENSHTEIN_MAX_DISTANCE = Math.ceil(input.length / 3);
         const users = await this.usersRepository
             .createQueryBuilder("user")
             .where("levenshtein(LOWER(user.login), :input) <= :max OR levenshtein(LOWER(user.label), :input) <= :max", {

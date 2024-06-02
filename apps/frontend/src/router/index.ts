@@ -25,6 +25,11 @@ const routes: Array<RouteRecordRaw> = [
                 name: "Settings",
                 component: () => import("@/views/SettingsView.vue"),
             },
+            {
+                path: "/@:username",
+                name: "Profile",
+                component: () => import("@/views/ProfileView.vue"),
+            },
         ],
     },
     {

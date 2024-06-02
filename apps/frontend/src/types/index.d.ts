@@ -16,6 +16,7 @@ export type User = {
     followersCount: number;
     followingCount: number;
     postsCount: number;
+    is_following?: number;
 };
 
 export type NavbarItemProps = {

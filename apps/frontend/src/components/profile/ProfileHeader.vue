@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { getAvatarUrl } from "@/lib/utils";
 import { User } from "@/types";
 import { RouterLink } from "vue-router";
 
@@ -36,7 +37,7 @@ async function onFollowClick(isFollowing: number) {
     <div class="flex h-[410px] w-[100%] gap-20 border-b px-10 pt-3">
         <Avatar size="lg">
             <template v-if="props.user">
-                <AvatarImage :src="props.user.avatar_url" alt="avatar" />
+                <AvatarImage :src="getAvatarUrl(props.user.avatar_url || '')" alt="avatar" />
                 <AvatarFallback>
                     <img src="@/assets/img/default_avatar.png" alt="avatar" />
                 </AvatarFallback>
@@ -48,7 +49,7 @@ async function onFollowClick(isFollowing: number) {
         <div class="flex w-full flex-col gap-6">
             <div v-if="props.user" class="flex items-center gap-8">
                 <span class="text-lg">{{ props.user.login }}</span>
-                <Button size="sm" class="text-white" variant="secondary" v-if="props.isMe" as-child>
+                <Button size="sm" class="text-foreground" variant="secondary" v-if="props.isMe" as-child>
                     <RouterLink :to="{ name: 'Settings' }"> Edytuj profil </RouterLink>
                 </Button>
                 <template v-else>
@@ -63,13 +64,13 @@ async function onFollowClick(isFollowing: number) {
                     <Button
                         @click="onFollowClick(props.user.is_following)"
                         size="sm"
-                        class="text-white"
+                        class="text-foreground"
                         variant="secondary"
                         v-if="props.user.is_following == 1"
                     >
                         Przestań obserwować
                     </Button>
-                    <Button size="sm" class="text-white" variant="secondary" v-if="props.user.is_following == 1">
+                    <Button size="sm" class="text-foreground" variant="secondary" v-if="props.user.is_following == 1">
                         <!-- <RouterLink :to="{name: 'Messages', params: {username: props.user.login}}"> -->
                         Wyślij wiadomość
                         <!-- </RouterLink> -->

@@ -1,5 +1,8 @@
 <script setup lang="ts">
 import { defineProps, onMounted, watch } from "vue";
+import { useRoute } from "vue-router";
+
+const route = useRoute();
 
 const DEFAULT_TITLE = "Instagram";
 
@@ -23,6 +26,13 @@ watch(
             return;
         }
         document.title = DEFAULT_TITLE + " - " + newTitle;
+    },
+);
+
+watch(
+    () => route.fullPath,
+    () => {
+        document.title = DEFAULT_TITLE;
     },
 );
 </script>

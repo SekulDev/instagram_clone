@@ -68,7 +68,7 @@ const items: NavbarItemProps[] = [
     {
         label: "Profil",
         avatar: getAvatarUrl(user?.avatar_url || ""),
-        // route: { name: "User", params: { username: user?.login } },
+        route: { name: "Profile", params: { username: user?.login } },
     },
 ];
 </script>

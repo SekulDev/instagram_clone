@@ -26,14 +26,16 @@ const props = defineProps<{
 const themeStore = useThemeStore();
 </script>
 <template>
-    <nav class="absolute flex md:left-0 md:top-0 md:h-[100vh] md:w-[330px] md:flex-col md:border-r md:p-4 md:pb-6">
-        <div class="my-6 px-2 sm:hidden md:block">
+    <nav
+        class="fixed bottom-0 left-0 flex w-[100vh] md:absolute md:top-0 md:h-[100vh] md:w-[330px] md:flex-col md:border-r md:p-4 md:pb-6"
+    >
+        <div class="my-6 hidden px-2 md:block">
             <RouterLink :to="{ name: 'Home' }">
                 <InstagramTextLogo />
             </RouterLink>
         </div>
         <DropdownMenu dir="ltr">
-            <div class="flex h-[100%] w-[100%] flex-1 md:flex-col md:gap-2 md:pt-3">
+            <div class="flex h-[100%] w-[100%] flex-1 justify-around md:flex-col md:justify-start md:gap-2 md:pt-3">
                 <NavbarItem
                     v-for="(item, index) in props.items"
                     :key="index"
@@ -46,7 +48,7 @@ const themeStore = useThemeStore();
                 />
             </div>
 
-            <DropdownMenuTrigger as-child>
+            <DropdownMenuTrigger as-child class="hidden md:block">
                 <Button variant="ghost">
                     <NavbarItem label="Więcej" :icon="MoreIcon" />
                 </Button>

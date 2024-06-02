@@ -36,6 +36,6 @@ const isSelected = computed<boolean>(() => {
                 <img src="@/assets/img/default_avatar.png" alt="avatar" />
             </AvatarFallback>
         </Avatar>
-        <span class="sm:hidden md:inline">{{ props.label }}</span>
+        <span class="hidden md:inline">{{ props.label }}</span>
     </RouterLink>
 </template>

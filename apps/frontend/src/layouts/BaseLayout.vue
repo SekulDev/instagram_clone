@@ -1,9 +1,11 @@
 <template>
-    <div class="container flex h-[100vh] w-[100vw] items-center justify-center">
+    <div class="flex h-[100vh] w-[100vw] items-center justify-center">
         <Navbar :items="items" />
-        <RouterView v-slot="{ Component }">
-            <component :is="Component" />
-        </RouterView>
+        <main class="box-border h-[100vh] w-[100vw] md:pl-[330px]">
+            <RouterView v-slot="{ Component }">
+                <component :is="Component" />
+            </RouterView>
+        </main>
     </div>
 </template>
 

@@ -36,7 +36,7 @@ export async function getUserByUsername(username: string) {
 
 export async function searchUsers(input: string) {
     try {
-        const { data, success } = await request({
+        const { data, success } = await request<User[]>({
             url: `/user/search/${input}`,
         });
 

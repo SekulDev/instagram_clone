@@ -2,7 +2,7 @@
     <div class="flex h-[100vh] w-[100vw] items-center justify-center">
         <Navbar :items="items" />
         <main class="box-border h-[100vh] w-[100vw] md:pl-[330px]">
-            <RouterView v-slot="{ Component }">
+            <RouterView :key="$route.fullPath" v-slot="{ Component }">
                 <component :is="Component" />
             </RouterView>
         </main>
@@ -39,6 +39,7 @@ const items: NavbarItemProps[] = [
     {
         label: "Szukaj",
         icon: SearchIcon,
+        isSearch: true,
     },
     {
         label: "Eksploruj",

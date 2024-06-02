@@ -27,4 +27,5 @@ export type NavbarItemProps = {
     icon?: any;
     avatar?: string;
     onClick?: () => void;
+    isSearch?: boolean;
 };

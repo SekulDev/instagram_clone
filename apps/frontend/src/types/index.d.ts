@@ -29,3 +29,16 @@ export type NavbarItemProps = {
     onClick?: () => void;
     isSearch?: boolean;
 };
+
+export type Post = {
+    id: number;
+    description: string;
+    created_at: string;
+    images: string[];
+    tags: {
+        id: number;
+        name: string;
+    }[];
+    likes: number;
+    comments: number;
+};

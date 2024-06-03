@@ -9,7 +9,11 @@ export function cn(...inputs: ClassValue[]) {
 
 export function getAvatarUrl(avatarUrl: string) {
     if (avatarUrl.length > 0) {
-        return `${env.BACKEND_URL}/public/${avatarUrl}`;
+        return `${env.BACKEND_URL}/upload/${avatarUrl}`;
     }
     return "default";
+}
+
+export function getImageUrl(image: string) {
+    return `${env.BACKEND_URL}/upload/${image}`;
 }

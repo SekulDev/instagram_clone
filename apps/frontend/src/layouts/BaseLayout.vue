@@ -1,5 +1,5 @@
 <template>
-    <div class="flex h-[100vh] w-[100vw] items-center justify-center">
+    <div class="flex h-[100vh] w-[100vw] items-center justify-center overflow-x-hidden">
         <Navbar :items="items" />
         <main class="box-border h-[100vh] w-[100vw] md:pl-[330px]">
             <RouterView :key="$route.fullPath" v-slot="{ Component }">

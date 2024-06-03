@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { defineProps, onMounted, watch } from "vue";
+import { onMounted, watch } from "vue";
 import { useRoute } from "vue-router";
 
 const route = useRoute();

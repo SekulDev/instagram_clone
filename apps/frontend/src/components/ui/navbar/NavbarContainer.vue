@@ -32,7 +32,7 @@ const isSearchOpen = ref<boolean>(false);
 <template>
     <Sheet v-model:open="isSearchOpen">
         <nav
-            class="fixed bottom-0 left-0 flex w-[100vh] md:absolute md:top-0 md:h-[100vh] md:w-[330px] md:flex-col md:border-r md:p-4 md:pb-6"
+            class="fixed bottom-0 left-0 flex w-[100vh] md:top-0 md:h-[100vh] md:w-[330px] md:flex-col md:border-r md:p-4 md:pb-6"
         >
             <div class="my-6 hidden h-[29px] px-2 md:block">
                 <RouterLink :to="{ name: 'Home' }">

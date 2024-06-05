@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { getImageUrl } from "@/lib/utils";
 import { Post } from "@/types";
-import { Comment, computed } from "vue";
+import { computed } from "vue";
 
 import { CommentIcon, LikeIcon } from "@repo/icons";
 
@@ -25,7 +25,7 @@ function onPostClick(postId: number) {
     <div class="flex w-[100%] justify-center gap-2">
         <span class="border-foreground border-t py-3 text-sm font-semibold">POSTY</span>
     </div>
-    <div class="grid w-[100%] auto-rows-max grid-cols-3 gap-1">
+    <div class="mb-5 grid w-[100%] auto-rows-max grid-cols-3 gap-1">
         <div
             class="post relative aspect-[4/5] cursor-pointer overflow-hidden"
             @click="() => onPostClick(post.id)"

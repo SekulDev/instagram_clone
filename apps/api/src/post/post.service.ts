@@ -17,30 +17,46 @@ export class PostService {
         private tagService: TagService,
     ) {}
 
-    async findOne(id: number): Promise<Post | null> {
-        const post = await this.postRepository
+    async findOne(id: number, currentUserId?: number): Promise<Post | null> {
+        const queryBuilder = this.postRepository
             .createQueryBuilder("post")
             .where("post.id = :id", { id })
             .loadRelationCountAndMap("post.likes", "post.likes")
             .loadRelationCountAndMap("post.comments", "post.comments")
             .leftJoinAndSelect("post.author", "author")
-            .leftJoinAndSelect("post.tags", "tags")
-            .getOne();
+            .leftJoinAndSelect("post.tags", "tags");
+
+        if (currentUserId) {
+            queryBuilder.loadRelationCountAndMap("post.is_liking", "post.likes", "like", (query) => {
+                return query.where("like.user = :id", { id: currentUserId });
+            });
+        }
+
+        const post = await queryBuilder.getOne();
+
         if (!post) {
             throw new NotFoundException("No post with this id");
         }
         return post;
     }
 
-    async findPostsByAuthor(username: string) {
+    async findPostsByAuthor(username: string, currentUserId?: number) {
         const user = await this.usersService.getUserByLogin(username);
-        const posts = await this.postRepository
+
+        const queryBuilder = this.postRepository
             .createQueryBuilder("post")
             .where("post.author = :id", { id: user.id })
             .loadRelationCountAndMap("post.likes", "post.likes")
             .loadRelationCountAndMap("post.comments", "post.comments")
-            .leftJoinAndSelect("post.tags", "tags")
-            .getMany();
+            .leftJoinAndSelect("post.tags", "tags");
+
+        if (currentUserId) {
+            queryBuilder.loadRelationCountAndMap("post.is_liking", "post.likes", "like", (query) => {
+                return query.where("like.user = :id", { id: currentUserId });
+            });
+        }
+
+        const posts = await queryBuilder.getMany();
         return posts;
     }
 

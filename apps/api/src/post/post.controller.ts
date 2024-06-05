@@ -16,13 +16,13 @@ export class PostController {
     }
 
     @Get("user/:user")
-    async findByUser(@Param("user") username: string) {
-        return await this.postService.findPostsByAuthor(username);
+    async findByUser(@Param("user") username: string, @Req() req: Request) {
+        return await this.postService.findPostsByAuthor(username, req["user"].id);
     }
 
     @Get(":id")
-    async findOne(@Param("id") id: number) {
-        return await this.postService.findOne(id);
+    async findOne(@Param("id") id: number, @Req() req: Request) {
+        return await this.postService.findOne(id, req["user"].id);
     }
 
     @Patch(":id")

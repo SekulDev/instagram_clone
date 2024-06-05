@@ -41,4 +41,13 @@ export type Post = {
     }[];
     likes: number;
     comments: number;
+    author: User;
+    is_liking: number;
+};
+
+export type Comment = {
+    id: number;
+    content: string;
+    created_at: string;
+    author: User;
 };

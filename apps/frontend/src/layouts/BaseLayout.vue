@@ -6,6 +6,7 @@
                 <component :is="Component" />
             </RouterView>
         </main>
+        <PostModal :post="postStore.post" v-if="postStore.post" />
     </div>
 </template>
 
@@ -24,9 +25,13 @@ import {
     SearchIcon,
 } from "@repo/icons";
 
+import { usePostStore } from "@/stores/post";
 import { useUserStore } from "@/stores/user";
 
+import PostModal from "@/components/post/PostModal.vue";
 import { Navbar } from "@/components/ui/navbar";
+
+const postStore = usePostStore();
 
 const { user } = useUserStore();
 

@@ -1,5 +1,6 @@
 import { type RouteRecordRaw, createRouter, createWebHistory } from "vue-router";
 
+import { usePostStore } from "@/stores/post";
 import { useUserStore } from "@/stores/user";
 
 import AuthLayout from "@/layouts/AuthLayout.vue";
@@ -29,6 +30,12 @@ const routes: Array<RouteRecordRaw> = [
                 path: "/@:username",
                 name: "Profile",
                 component: () => import("@/views/ProfileView.vue"),
+            },
+            {
+                path: "/post/:postId(\\d+)",
+                name: "Post",
+                component: () => import("@/views/HomeView.vue"),
+                // redirect: { name: "Home" },
             },
         ],
     },
@@ -76,7 +83,7 @@ const router = createRouter({
     routes: routes,
 });
 
-router.beforeEach(async (to, _from, next) => {
+router.beforeEach(async (to, from, next) => {
     if (!to.meta.isPublic) {
         const { isReady, $subscribe } = useUserStore();
 
@@ -96,6 +103,17 @@ router.beforeEach(async (to, _from, next) => {
             return next({
                 name: "Login",
             });
+        }
+
+        if (to.name == "Post") {
+            const { setPost } = usePostStore();
+            if (setPost) {
+                setPost(Number(to.params.postId as string));
+            }
+            if (!from) {
+                return next({ name: "Home" });
+            }
+            return next(from);
         }
     }
 

@@ -5,7 +5,11 @@ import { computed } from "vue";
 
 import { CommentIcon, LikeIcon } from "@repo/icons";
 
+import { usePostStore } from "@/stores/post";
+
 import { Skeleton } from "@/components/ui/skeleton";
+
+const postStore = usePostStore();
 
 const props = defineProps<{
     posts?: Post[];
@@ -18,7 +22,7 @@ const postsCount = computed(() => {
 });
 
 function onPostClick(postId: number) {
-    console.log(postId);
+    postStore.setPost(postId);
 }
 </script>
 <template>

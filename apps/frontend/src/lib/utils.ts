@@ -17,3 +17,12 @@ export function getAvatarUrl(avatarUrl: string) {
 export function getImageUrl(image: string) {
     return `${env.BACKEND_URL}/upload/${image}`;
 }
+
+export function setClipboard(value: string) {
+    const clipElem = document.createElement("textarea");
+    clipElem.value = value;
+    document.body.appendChild(clipElem);
+    clipElem.select();
+    document.execCommand("copy");
+    document.body.removeChild(clipElem);
+}

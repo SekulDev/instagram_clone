@@ -23,4 +23,15 @@ export class TagController {
     async getTag(@Param("name") name: string) {
         return await this.tagService.getTag(name.toLowerCase());
     }
+
+    @Get("search/:input")
+    async searchTags(@Param("input") input: string, @Query("limit") limit: number) {
+        if (!limit) {
+            limit = this.defaultTagLimit;
+        }
+        if (limit > this.maxTagLimit) {
+            limit = this.maxTagLimit;
+        }
+        return await this.tagService.searchTags(input, limit);
+    }
 }

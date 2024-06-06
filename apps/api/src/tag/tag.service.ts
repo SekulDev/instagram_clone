@@ -23,6 +23,19 @@ export class TagService {
         await this.tagRepository.save(tagsEntities);
     }
 
+    async searchTags(input: string, limit: number) {
+        return await this.tagRepository
+            .createQueryBuilder("tag")
+            .innerJoin("tag.post", "post")
+            .select("tag.name", "name")
+            .addSelect("COUNT(post.id)", "popularity")
+            .where("LOWER(tag.name) LIKE :input", { input: `%${input}%` })
+            .groupBy("tag.name")
+            .orderBy("popularity", "DESC")
+            .limit(limit)
+            .getRawMany();
+    }
+
     async findMostPopular(limit: number) {
         return await this.tagRepository
             .createQueryBuilder("tag")

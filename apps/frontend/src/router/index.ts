@@ -19,6 +19,13 @@ const routes: Array<RouteRecordRaw> = [
             {
                 path: "/explore",
                 name: "Explore",
+                children: [
+                    {
+                        path: "/explore/tag/:tag",
+                        name: "Tag",
+                        component: () => import("@/views/ExploreView.vue"),
+                    },
+                ],
                 component: () => import("@/views/ExploreView.vue"),
             },
             {

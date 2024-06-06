@@ -51,3 +51,9 @@ export type Comment = {
     created_at: string;
     author: User;
 };
+
+export type Tag = {
+    name: string;
+    id: number;
+    popularity: number;
+};

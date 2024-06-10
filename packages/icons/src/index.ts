@@ -14,5 +14,7 @@ export { default as LikeIcon } from "./LikeIcon.vue";
 export { default as CommentIcon } from "./CommentIcon.vue";
 export { default as ShareIcon } from "./ShareIcon.vue";
 export { default as PostCommentIcon } from "./PostCommentIcon.vue";
+export { default as UploadImageIcon } from "./UploadImageIcon.vue";
 export { default as PostLikeIcon } from "./PostLikeIcon.vue";
+export { default as MoreImagesIcon } from "./MoreImagesIcon.vue";
 export { type IconProps } from "./props";

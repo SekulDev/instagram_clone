@@ -6,7 +6,6 @@ const props = defineProps<IconProps>();
 <template>
     <svg
         aria-label="Ikona motywu"
-        class="x1lliihq x1n2onr6 x5n08af"
         fill="currentColor"
         height="18"
         role="img"

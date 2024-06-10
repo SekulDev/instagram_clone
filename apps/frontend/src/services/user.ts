@@ -53,7 +53,7 @@ export async function updateUser(dto: UpdateMeDto) {
     try {
         const { data, success } = await request({
             url: `/user/@me`,
-            method: "PUT",
+            method: "PATCH",
             data: dto,
         });
 

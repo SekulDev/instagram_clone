@@ -57,3 +57,8 @@ export type Tag = {
     id: number;
     popularity: number;
 };
+
+export type UploadResponse = {
+    filename: string;
+    size: number;
+};

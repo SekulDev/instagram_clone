@@ -1,6 +1,7 @@
+import { getAvatarUrl } from "@/lib/utils";
 import { User } from "@/types";
 import { defineStore } from "pinia";
-import { reactive, toRefs } from "vue";
+import { reactive, ref, toRefs, watch } from "vue";
 import { useRouter } from "vue-router";
 
 import { logout } from "@/services/auth";
@@ -19,6 +20,15 @@ export const useUserStore = defineStore("user", () => {
         isReady: false,
     });
 
+    const userAvatar = ref<string>(getAvatarUrl(state.user?.avatar_url || ""));
+
+    watch(
+        () => state.user?.avatar_url,
+        (newValue) => {
+            userAvatar.value = getAvatarUrl(newValue || "");
+        },
+    );
+
     const updateStoreUser = async () => {
         const user = await getUser();
         if (user) {
@@ -29,6 +39,10 @@ export const useUserStore = defineStore("user", () => {
         }
         state.isReady = true;
     };
+
+    function refreshUser() {
+        updateStoreUser();
+    }
 
     updateStoreUser();
 
@@ -49,5 +63,7 @@ export const useUserStore = defineStore("user", () => {
         ...toRefs(state),
         onLogin,
         onLogout,
+        refreshUser,
+        userAvatar,
     };
 });

@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import { UploadResponse } from "@/types";
 import { toTypedSchema } from "@vee-validate/zod";
 import { Trash2 } from "lucide-vue-next";
 import { useForm } from "vee-validate";
@@ -11,7 +10,7 @@ import { UpdateMeDto } from "@repo/types";
 import { useUserStore } from "@/stores/user";
 
 import { forgotPassword } from "@/services/auth";
-import { uploadFile } from "@/services/content";
+import { pickImages, uploadFile } from "@/services/content";
 import { updateUser } from "@/services/user";
 
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
@@ -59,31 +58,8 @@ async function changePassword() {
 }
 
 async function changeImage() {
-    const input = document.createElement("input") as HTMLInputElement;
-    input.type = "file";
-    input.accept = "image/png, image/jpeg";
-    const image = await new Promise<UploadResponse | false>((resolve) => {
-        input.addEventListener("change", async () => {
-            const file = input.files?.[0];
-            if (!file) return;
-
-            const reader = new FileReader();
-
-            reader.onload = async function () {
-                const formData = new FormData();
-                formData.append("file", file);
-
-                resolve(await uploadFile(formData));
-            };
-            reader.readAsArrayBuffer(file);
-        });
-        document.body.appendChild(input);
-        input.click();
-        setTimeout(() => {
-            document.body.removeChild(input);
-        }, 0);
-    });
-
+    const formData = await pickImages();
+    const image = await uploadFile(formData);
     if (!image) return;
 
     const dto: UpdateMeDto = {

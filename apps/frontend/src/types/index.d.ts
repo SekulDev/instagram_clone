@@ -26,7 +26,7 @@ export type NavbarItemProps = {
     label: string;
     icon?: any;
     avatar?: string;
-    onClick?: () => void;
+    onClick?: (e: MouseEvent) => void;
     isSearch?: boolean;
 };
 
@@ -61,4 +61,13 @@ export type Tag = {
 export type UploadResponse = {
     filename: string;
     size: number;
+};
+
+export type CreatePost = {
+    image: File | null;
+    croppedImages: {
+        url: string;
+        originalUrl: string;
+        filter?: { name: string; filter: string };
+    }[];
 };

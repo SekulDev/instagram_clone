@@ -55,15 +55,16 @@ const isSearchOpen = ref<boolean>(false);
                                 />
                             </Button>
                         </SheetTrigger>
-                        <NavbarItem
-                            v-else
-                            :label="item.label"
-                            :icon="item.icon"
-                            :class="item.class"
-                            :style="item.style"
-                            :route="item.route"
-                            :avatar="item.avatar"
-                        />
+                        <Button variant="ghost" v-else @click="item.onClick">
+                            <NavbarItem
+                                :label="item.label"
+                                :icon="item.icon"
+                                :class="item.class"
+                                :style="item.style"
+                                :route="item.route"
+                                :avatar="item.avatar"
+                            />
+                        </Button>
                     </template>
                 </div>
 

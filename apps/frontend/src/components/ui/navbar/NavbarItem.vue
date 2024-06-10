@@ -3,7 +3,7 @@ import { cn } from "@/lib/utils";
 import { NavbarItemProps } from "@/types";
 import { computed } from "vue";
 import { RouteLocationNamedRaw } from "vue-router";
-import { useRoute } from "vue-router";
+import { RouterLink, useRoute } from "vue-router";
 
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 
@@ -19,7 +19,7 @@ const isSelected = computed<boolean>(() => {
 </script>
 <template>
     <RouterLink
-        :to="props.route || ''"
+        :to="props.route || '#'"
         :class="
             cn(
                 'hover:bg-secondary flex cursor-pointer items-center gap-4 rounded-md transition-colors sm:justify-center md:w-[100%] md:justify-start md:px-2 md:py-3',

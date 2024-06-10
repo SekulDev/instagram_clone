@@ -6,6 +6,7 @@
                 <component :is="Component" />
             </RouterView>
         </main>
+        <CreateModal :open="isCreateOpen" @update-open="onUpdateCreateOpen" />
         <PostModal :post="postStore.post" v-if="postStore.post" />
     </div>
 </template>
@@ -13,6 +14,7 @@
 <script setup lang="ts">
 import { getAvatarUrl } from "@/lib/utils";
 import { NavbarItemProps } from "@/types";
+import { ref } from "vue";
 import { RouterView } from "vue-router";
 
 import {
@@ -28,12 +30,19 @@ import {
 import { usePostStore } from "@/stores/post";
 import { useUserStore } from "@/stores/user";
 
+import CreateModal from "@/components/create/CreateModal.vue";
 import PostModal from "@/components/post/PostModal.vue";
 import { Navbar } from "@/components/ui/navbar";
 
 const postStore = usePostStore();
 
 const { user } = useUserStore();
+
+const isCreateOpen = ref<boolean>(false);
+
+function onUpdateCreateOpen(val: boolean) {
+    isCreateOpen.value = val;
+}
 
 const items: NavbarItemProps[] = [
     {
@@ -69,6 +78,9 @@ const items: NavbarItemProps[] = [
     {
         label: "Utwórz",
         icon: CreateIcon,
+        onClick: () => {
+            isCreateOpen.value = true;
+        },
         // route: { name: "Create" },
     },
     {

@@ -97,7 +97,7 @@ async function onFollowClick(isFollowing: number) {
 
             <div v-if="props.user" class="max-w-4/12 mb-3 flex flex-col gap-2">
                 <span class="font-bold">{{ props.user.label }}</span>
-                <span class="text-sm">{{ props.user.bio || "" }}</span>
+                <span class="whitespace-pre-line text-sm">{{ props.user.bio || "" }}</span>
             </div>
             <div class="flex flex-col gap-2" v-else>
                 <Skeleton class="h-4 w-4/12" />

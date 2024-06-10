@@ -44,7 +44,7 @@ watch(
                     <img src="@/assets/img/default_avatar.png" alt="avatar" />
                 </AvatarFallback>
             </Avatar>
-            <span class="text-sm">
+            <span class="whitespace-pre-line text-sm">
                 <span class="font-semibold">{{ props.post.author.login }}</span>
                 {{ props.post.description }}
 
@@ -66,7 +66,7 @@ watch(
                 </AvatarFallback>
             </Avatar>
             <span class="text-sm">
-                <span class="font-semibold">{{ comment.author.login }}</span>
+                <span class="whitespace-pre-line font-semibold">{{ comment.author.login }}</span>
                 {{ comment.content }}
 
                 <span class="text-secondary-foreground mt-1 block">{{

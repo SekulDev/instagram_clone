@@ -53,6 +53,7 @@ watch(
         open.value = newValue;
         imageBlob.value = null;
         croppedImages.images = [];
+        page.value = 0;
     },
 );
 

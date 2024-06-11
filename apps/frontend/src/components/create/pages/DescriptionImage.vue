@@ -72,7 +72,8 @@ const onSubmit = form.handleSubmit(async (values) => {
                     canvas.toBlob(async (newBlob) => {
                         if (!newBlob) throw Error();
                         let formData = new FormData();
-                        formData.append("file", newBlob);
+
+                        formData.append("file", newBlob, "image.png");
 
                         const data = await uploadFile(formData);
                         if (!data) throw Error();

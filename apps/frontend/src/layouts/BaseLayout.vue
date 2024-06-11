@@ -21,9 +21,8 @@ import {
     CreateIcon,
     DirectMessagesIcon,
     ExploreIcon,
-    HomeIcon,
-    NotificationIcon,
-    ReelsIcon,
+    HomeIcon, // NotificationIcon,
+    // ReelsIcon,
     SearchIcon,
 } from "@repo/icons";
 
@@ -60,21 +59,21 @@ const items: NavbarItemProps[] = [
         icon: ExploreIcon,
         route: { name: "Explore" },
     },
-    {
-        label: "Rolki",
-        icon: ReelsIcon,
-        // route: { name: "Reels" },
-    },
+    // {
+    //     label: "Rolki",
+    //     icon: ReelsIcon,
+    //     // route: { name: "Reels" },
+    // },
     {
         label: "Wiadomości",
         icon: DirectMessagesIcon,
         // route: { name: "Messages" },
     },
-    {
-        label: "Powiadomienia",
-        icon: NotificationIcon,
-        // route: { name: "Notifications" },
-    },
+    // {
+    //     label: "Powiadomienia",
+    //     icon: NotificationIcon,
+    //     // route: { name: "Notifications" },
+    // },
     {
         label: "Utwórz",
         icon: CreateIcon,

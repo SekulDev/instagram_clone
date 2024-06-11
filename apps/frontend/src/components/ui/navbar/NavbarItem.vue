@@ -24,7 +24,7 @@ const isSelected = computed<boolean>(() => {
             cn(
                 'hover:bg-secondary flex cursor-pointer items-center gap-4 rounded-md transition-colors sm:justify-center md:w-[100%] md:justify-start md:px-2 md:py-3',
                 props.class,
-                isSelected && 'font-bold',
+                isSelected && '!font-bold',
             )
         "
         :style="props.style"

@@ -44,7 +44,7 @@ const isSearchOpen = ref<boolean>(false);
                 <div class="flex h-[100%] w-[100%] flex-1 justify-around md:flex-col md:justify-start md:gap-2 md:pt-3">
                     <template v-for="item in props.items">
                         <SheetTrigger as-child v-if="item.isSearch">
-                            <Button variant="ghost">
+                            <Button variant="ghost" class="font-normal">
                                 <NavbarItem
                                     :label="item.label"
                                     :icon="item.icon"
@@ -55,7 +55,7 @@ const isSearchOpen = ref<boolean>(false);
                                 />
                             </Button>
                         </SheetTrigger>
-                        <Button variant="ghost" v-else @click="item.onClick">
+                        <Button variant="ghost" v-else @click="item.onClick" class="font-normal">
                             <NavbarItem
                                 :label="item.label"
                                 :icon="item.icon"

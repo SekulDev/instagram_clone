@@ -4,11 +4,15 @@ import { DataSource, Like } from "typeorm";
 import { Comment } from "src/comment/comment.entity";
 import { Follow } from "src/follow/follow.entity";
 import { Post } from "src/post/post.entity";
+import { PostService } from "src/post/post.service";
 import { Tag } from "src/tag/tag.entity";
 
 @Injectable()
 export class ExploreService {
-    constructor(private dataSource: DataSource) {}
+    constructor(
+        private dataSource: DataSource,
+        private postService: PostService,
+    ) {}
 
     private async getUserTagCounts(userId: number, tag?: string) {
         const query = this.dataSource
@@ -66,11 +70,14 @@ export class ExploreService {
         });
 
         if (tag) {
-            query.innerJoin(Tag, "tag", "tag.post = post.id").andWhere("tag.name = :tag", { tag });
+            query.where("tags.name = :tag", { tag });
+        }
+
+        if (excludedPostIds.length > 0) {
+            query.where("post.id NOT IN (:...excludedPostIds)", { excludedPostIds });
         }
 
         const mostLikedPosts = await query
-            .where("post.id NOT IN (:...excludedPostIds)", { excludedPostIds })
             .groupBy("post.id")
             .orderBy("COUNT(like.id)", "DESC")
             .addOrderBy("post.created_at", "DESC")
@@ -81,46 +88,67 @@ export class ExploreService {
     }
 
     async getRecommendedPosts(userId: number, limit: number = 10, tag?: string) {
-        const tagCounts = await this.getUserTagCounts(userId, tag);
-        const tagNames = tagCounts.map((tc) => tc.name);
+        if (!tag) {
+            const tagCounts = await this.getUserTagCounts(userId, tag);
+            const tagNames = tagCounts.map((tc) => tc.name);
 
-        const recommendedQuery = this.dataSource
-            .createQueryBuilder(Post, "post")
-            .innerJoin(Tag, "tag", "tag.post = post.id")
-            .loadRelationCountAndMap("post.likes", "post.likes")
-            .loadRelationCountAndMap("post.comments", "post.comments")
-            .leftJoinAndSelect("post.author", "author")
-            .leftJoinAndSelect("post.tags", "tags")
-            .where("tag.name IN (:...tagNames)", { tagNames });
+            const recommendedQuery = this.dataSource
+                .createQueryBuilder(Post, "post")
+                .innerJoin(Tag, "tag", "tag.post = post.id");
 
-        recommendedQuery.loadRelationCountAndMap("post.is_liking", "post.likes", "like", (query) => {
-            return query.where("like.user = :id", { id: userId });
-        });
+            if (tagNames.length > 0) {
+                recommendedQuery.where("tag.name IN (:...tagNames)", { tagNames });
+            }
 
-        if (tag) {
-            recommendedQuery.andWhere("tag.name = :tag", { tag });
-        }
+            recommendedQuery
+                .loadRelationCountAndMap("post.likes", "post.likes")
+                .loadRelationCountAndMap("post.comments", "post.comments")
+                .leftJoinAndSelect("post.author", "author")
+                .leftJoinAndSelect("post.tags", "tags");
 
-        const recommendedPosts = await recommendedQuery.orderBy("post.created_at", "DESC").limit(limit).getMany();
+            recommendedQuery.loadRelationCountAndMap("post.is_liking", "post.likes", "like", (query) => {
+                return query.where("like.user = :id", { id: userId });
+            });
 
-        const followedPosts = await this.getPostsFromFollowedUsers(userId, limit, tag);
+            if (tag) {
+                recommendedQuery.andWhere("tag.name = :tag", { tag });
+            }
 
-        const allPosts = [...recommendedPosts, ...followedPosts];
-        const uniquePosts = Array.from(new Set(allPosts.map((post) => post.id))).map((id) =>
-            allPosts.find((post) => post.id === id),
-        );
+            const recommendedPosts = await recommendedQuery.orderBy("post.created_at", "DESC").limit(limit).getMany();
 
-        if (uniquePosts.length < limit) {
-            const excludedPostIds = uniquePosts.map((post) => post.id);
-            const additionalPosts = await this.getMostLikedPosts(
-                userId,
-                excludedPostIds,
-                limit - uniquePosts.length,
-                tag,
+            const followedPosts = await this.getPostsFromFollowedUsers(userId, limit, tag);
+
+            const allPosts = [...recommendedPosts, ...followedPosts];
+            const uniquePosts = Array.from(new Set(allPosts.map((post) => post.id))).map((id) =>
+                allPosts.find((post) => post.id === id),
             );
-            uniquePosts.push(...additionalPosts);
-        }
 
-        return uniquePosts.slice(0, limit);
+            if (uniquePosts.length < limit) {
+                const excludedPostIds = uniquePosts.map((post) => post.id);
+                const additionalPosts = await this.getMostLikedPosts(
+                    userId,
+                    excludedPostIds,
+                    limit - uniquePosts.length,
+                    tag,
+                );
+                uniquePosts.push(...additionalPosts);
+            }
+
+            const posts = uniquePosts.slice(0, limit);
+            const p = [];
+            for (const post of posts) {
+                p.push(await this.postService.findOne(post.id));
+            }
+
+            return p;
+        } else {
+            const posts = await this.getMostLikedPosts(userId, [], limit, tag);
+            const p = [];
+            for (const post of posts) {
+                p.push(await this.postService.findOne(post.id));
+            }
+
+            return p;
+        }
     }
 }

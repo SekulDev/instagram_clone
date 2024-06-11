@@ -56,7 +56,7 @@ export class PostService {
             });
         }
 
-        const posts = await queryBuilder.getMany();
+        const posts = await queryBuilder.orderBy("post.created_at", "DESC").getMany();
         return posts;
     }
 

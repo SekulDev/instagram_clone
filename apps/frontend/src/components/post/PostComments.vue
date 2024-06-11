@@ -3,6 +3,8 @@ import { getAvatarUrl } from "@/lib/utils";
 import { Comment, Post } from "@/types";
 import { onMounted, reactive, watch } from "vue";
 
+import { usePostStore } from "@/stores/post";
+
 import { getPostComments } from "@/services/comment";
 
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
@@ -49,8 +51,13 @@ watch(
                 {{ props.post.description }}
 
                 <span class="text-primary block">
-                    <!-- @TODO CLICK ON TAGS -->
-                    {{ props.post.tags.map((tag) => "#" + tag.name).join(" ") }}
+                    <RouterLink
+                        @click="usePostStore().hidePost()"
+                        :to="{ name: 'Tag', params: { tag: tag.name } }"
+                        v-for="tag in props.post.tags"
+                    >
+                        #{{ tag.name }}
+                    </RouterLink>
                 </span>
 
                 <span class="text-secondary-foreground mt-3 block">{{

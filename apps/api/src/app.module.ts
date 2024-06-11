@@ -12,6 +12,7 @@ import { ContentModule } from "./content/content.module";
 import { EnvModule } from "./env/env.module";
 import { ENV_SCHEMA } from "./env/env.schema";
 import { EnvService } from "./env/env.service";
+import { ExploreModule } from "./explore/explore.module";
 import { FollowModule } from "./follow/follow.module";
 import { LikeModule } from "./like/like.module";
 import { PostModule } from "./post/post.module";
@@ -76,6 +77,7 @@ import { UserModule } from "./user/user.module";
         LikeModule,
         CommentModule,
         TagModule,
+        ExploreModule,
     ],
     controllers: [AppController],
     providers: [AppService],

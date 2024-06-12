@@ -34,7 +34,6 @@
 -   Content
     -   [✅] - uploading images
     -   [✅] - getting uploaded images
-    -   [❌] - image filters
 -   Posts
     -   [✅] - creating a post with list of images, description
     -   [✅] - getting post
@@ -98,3 +97,13 @@
     -   label and bio of this user
     -   users posts with likes and comments count
 -   404 page
+
+### TODO
+
+-   Reels
+-   Messages
+-   Stories
+-   Locales
+-   Unit and integrations tests
+-   Docker setup
+-   Improve recommendation algorithm, because now is so bad

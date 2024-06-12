@@ -18,8 +18,7 @@ import { ref } from "vue";
 import { RouterView } from "vue-router";
 
 import {
-    CreateIcon,
-    DirectMessagesIcon,
+    CreateIcon, // DirectMessagesIcon,
     ExploreIcon,
     HomeIcon, // NotificationIcon,
     // ReelsIcon,
@@ -64,11 +63,11 @@ const items: NavbarItemProps[] = [
     //     icon: ReelsIcon,
     //     // route: { name: "Reels" },
     // },
-    {
-        label: "Wiadomości",
-        icon: DirectMessagesIcon,
-        // route: { name: "Messages" },
-    },
+    // {
+    //     label: "Wiadomości",
+    //     icon: DirectMessagesIcon,
+    //     // route: { name: "Messages" },
+    // },
     // {
     //     label: "Powiadomienia",
     //     icon: NotificationIcon,

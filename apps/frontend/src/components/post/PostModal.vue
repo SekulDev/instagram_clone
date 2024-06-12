@@ -51,7 +51,10 @@ function onCommentAdd() {
             <div class="relative flex md:h-[90vh]">
                 <PostImage :post="props.post" />
                 <div class="relative flex aspect-[4/5] h-full flex-col overflow-hidden border">
-                    <div class="flex w-full items-center gap-4 border-b p-3">
+                    <RouterLink
+                        :to="{ name: 'Profile', params: { username: props.post.author.login } }"
+                        class="flex w-full items-center gap-4 border-b p-3"
+                    >
                         <Avatar size="base">
                             <AvatarImage :src="getAvatarUrl(props.post.author.avatar_url)" alt="avatar" />
                             <AvatarFallback>
@@ -59,7 +62,7 @@ function onCommentAdd() {
                             </AvatarFallback>
                         </Avatar>
                         <span class="text-sm font-semibold">{{ props.post.author.login }}</span>
-                    </div>
+                    </RouterLink>
                     <PostComments :post="props.post" />
                     <div class="w-full border-t">
                         <PostActionBar :post="props.post" />

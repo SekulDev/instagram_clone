@@ -40,12 +40,14 @@ watch(
 <template>
     <div class="no-scrollbar h-full w-full flex-1 overflow-y-scroll">
         <div class="flex w-full gap-4 p-3">
-            <Avatar size="base">
-                <AvatarImage :src="getAvatarUrl(props.post.author.avatar_url)" alt="avatar" />
-                <AvatarFallback>
-                    <img src="@/assets/img/default_avatar.png" alt="avatar" />
-                </AvatarFallback>
-            </Avatar>
+            <RouterLink :to="{ name: 'Profile', params: { username: props.post.author.login } }">
+                <Avatar size="base">
+                    <AvatarImage :src="getAvatarUrl(props.post.author.avatar_url)" alt="avatar" />
+                    <AvatarFallback>
+                        <img src="@/assets/img/default_avatar.png" alt="avatar" />
+                    </AvatarFallback>
+                </Avatar>
+            </RouterLink>
             <span class="whitespace-pre-line text-sm">
                 <span class="font-semibold">{{ props.post.author.login }}</span>
                 {{ props.post.description }}
@@ -66,12 +68,14 @@ watch(
             </span>
         </div>
         <div class="flex w-full gap-4 p-3" v-for="comment in comments.comments">
-            <Avatar size="base">
-                <AvatarImage :src="getAvatarUrl(comment.author.avatar_url)" alt="avatar" />
-                <AvatarFallback>
-                    <img src="@/assets/img/default_avatar.png" alt="avatar" />
-                </AvatarFallback>
-            </Avatar>
+            <RouterLink :to="{ name: 'Profile', params: { username: comment.author.login } }">
+                <Avatar size="base">
+                    <AvatarImage :src="getAvatarUrl(comment.author.avatar_url)" alt="avatar" />
+                    <AvatarFallback>
+                        <img src="@/assets/img/default_avatar.png" alt="avatar" />
+                    </AvatarFallback>
+                </Avatar>
+            </RouterLink>
             <span class="text-sm">
                 <span class="whitespace-pre-line font-semibold">{{ comment.author.login }}</span>
                 {{ comment.content }}

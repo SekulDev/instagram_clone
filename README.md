@@ -47,8 +47,54 @@
 -   Messages [❌]
 -   Reels [❌]
 -   Stories [❌]
--   Recommendations [❌]
+-   Recommendations [✅] (partly, not the best way)
 
 ### FEATURES IN FRONTEND
 
--   TODO
+-   Base
+    -   UI almost copied from real instagram
+    -   light / dark mode
+-   Authorization
+    -   Logging to account
+    -   Registering new account
+    -   Changing password if forgot
+-   Navbar
+    -   searching users and tags
+    -   explore page
+    -   create post modal
+    -   home page
+    -   my profile url
+    -   "more" dropdown with changing theme, logout and profile settings
+-   Settings
+    -   changing / deleting avatar
+    -   changing account label
+    -   changing biogram
+    -   changing password
+-   Home page
+    -   posts from explore tab but presented in single posts
+-   Searching
+    -   searching users using Levenshtein algorithm
+    -   searching tags if search string is started with "#"
+-   Explore Page
+    -   recommended posts presented in multiple posts
+    -   with tag param, presented recommended posts only with this tag
+-   Create modal
+    -   uploading files from computer
+    -   cropping images to 4/5 format
+    -   can add / remove more photos to one post
+    -   almost 40 filters to every image
+    -   description to post
+    -   tags to post with helpers by most popular tags
+-   Post modal
+    -   can change images with there are more than one
+    -   description of post
+    -   tags of post (url to explore this tag)
+    -   post comments
+    -   likes count
+    -   possibility to like, comment, and share (copy link to post, but sometimes is bugged idk why)
+-   Profile page
+    -   followers / following / posts count
+    -   possibilty to folow / unfollow user
+    -   label and bio of this user
+    -   users posts with likes and comments count
+-   404 page

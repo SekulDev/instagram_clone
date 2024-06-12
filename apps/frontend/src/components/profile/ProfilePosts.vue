@@ -43,8 +43,10 @@ function onPostClick(postId: number) {
                 </template>
             </Suspense>
             <div class="post-data absolute left-0 top-0 hidden h-full w-full items-center justify-center gap-3">
-                <div class="flex items-center gap-1 font-semibold"><LikeIcon class="h-6 w-6" /> {{ post.likes }}</div>
-                <div class="flex items-center gap-1 font-semibold">
+                <div class="flex items-center gap-1 font-semibold text-white">
+                    <LikeIcon class="h-6 w-6" /> {{ post.likes }}
+                </div>
+                <div class="flex items-center gap-1 font-semibold text-white">
                     <CommentIcon class="h-6 w-6" /> {{ post.comments }}
                 </div>
             </div>

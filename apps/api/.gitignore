@@ -42,7 +42,7 @@ lerna-debug.log*
 .env.production.local
 .env.local
 
-upload
+# upload ## TEMPORARY REMOVE FROM GITIGNORE
 
 # temp directory
 .temp

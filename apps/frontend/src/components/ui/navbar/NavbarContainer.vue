@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { NavbarItemProps } from "@/types";
 import { ref } from "vue";
-import { RouterLink } from "vue-router";
+import { RouterLink, useRouter } from "vue-router";
 
 import { DarkModeIcon, InstagramIcon, LightModeIcon, MoreIcon, SettingsIcon } from "@repo/icons";
 
@@ -25,9 +25,16 @@ const props = defineProps<{
     items: NavbarItemProps[];
 }>();
 
+const router = useRouter();
+
 const themeStore = useThemeStore();
 
 const isSearchOpen = ref<boolean>(false);
+
+function onLogout() {
+    logout();
+    router.push({ name: "Login" });
+}
 </script>
 <template>
     <Sheet v-model:open="isSearchOpen">
@@ -83,7 +90,7 @@ const isSearchOpen = ref<boolean>(false);
                         Zmień wygląd
                     </DropdownMenuItem>
                     <DropdownMenuSeparator />
-                    <DropdownMenuItem :onclick="logout">Wyloguj się</DropdownMenuItem>
+                    <DropdownMenuItem :onclick="onLogout">Wyloguj się</DropdownMenuItem>
                 </DropdownMenuContent>
             </DropdownMenu>
         </nav>

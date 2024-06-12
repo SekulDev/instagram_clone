@@ -70,11 +70,11 @@ async function onFollowClick(isFollowing: number) {
                     >
                         Przestań obserwować
                     </Button>
-                    <Button size="sm" class="text-foreground" variant="secondary" v-if="props.user.is_following == 1">
-                        <!-- <RouterLink :to="{name: 'Messages', params: {username: props.user.login}}"> -->
-                        Wyślij wiadomość
-                        <!-- </RouterLink> -->
-                    </Button>
+                    <!-- <Button size="sm" class="text-foreground" variant="secondary" v-if="props.user.is_following == 1">
+                        <RouterLink :to="{name: 'Messages', params: {username: props.user.login}}">
+                            Wyślij wiadomość
+                        </RouterLink>
+                    </Button> -->
                 </template>
             </div>
             <Skeleton class="h-6 w-8/12" v-else />

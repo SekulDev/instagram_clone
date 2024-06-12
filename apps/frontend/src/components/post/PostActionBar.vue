@@ -12,6 +12,7 @@ import { like, unlike } from "@/services/like";
 
 const props = defineProps<{
     post: Post;
+    onCommentClick?: () => void;
 }>();
 
 const router = useRouter();
@@ -53,7 +54,10 @@ function copy() {
                 @click="() => onLike(true)"
             />
             <LikeIcon v-if="liked" class="text-destructive h-6 w-6 cursor-pointer" @click="() => onLike(false)" />
-            <PostCommentIcon class="hover:text-secondary-foreground h-6 w-6 cursor-pointer" />
+            <PostCommentIcon
+                @click="props.onCommentClick"
+                class="hover:text-secondary-foreground h-6 w-6 cursor-pointer"
+            />
             <ShareIcon @click="copy" class="hover:text-secondary-foreground h-6 w-6 cursor-pointer" />
         </div>
         <div class="pointer-events-none py-2 text-sm">

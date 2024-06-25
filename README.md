@@ -63,12 +63,54 @@
     -   users posts with likes and comments count
 -   404 page
 
+### PREVIEW
+
+-   AUTH
+<p>
+    <img src="./preview/login.png" width="300"/>
+    <img src="./preview/register.png" width="300"/>
+    <img src="./preview/forgot-password.png" width="300"/>
+    <img src="./preview/change-password.png" width="300"/>
+</p>
+
+-   NAVBAR
+<p>
+    <img src="./preview/search_user.png" width="200"/>
+    <img src="./preview/search_tag.png" width="200"/>
+    <img src="./preview/more_dropdown.png" width="200"/>
+</p>
+
+-   PAGES
+<p>
+    <img src="./preview/home.png" width="600"/>
+    <img src="./preview/explore.png" width="600"/>
+    <img src="./preview/settings.png" width="600"/>
+    <img src="./preview/profile.png" width="600"/>
+</p>
+
+-   POST MODAL
+<p>
+    <img src="./preview/post_modal.png" width="600"/>
+</p>
+
+-   CREATE POST
+<p>
+    <img src="./preview/create_1.png" width="300"/>
+    <img src="./preview/create_2.png" width="600"/>
+    <img src="./preview/create_3.png" width="600"/>
+    <img src="./preview/create_4.png" width="600"/>
+</p>
+
+-   LIGHT THEME
+<p>
+    <img src="./preview/light_theme.png" width="600"/>
+</p>
+
 ### TODO
 
 -   Reels
 -   Messages
 -   Stories
--   Locales
 -   Unit and integrations tests
 -   Docker setup
 -   Improve recommendation algorithm, because now is so bad

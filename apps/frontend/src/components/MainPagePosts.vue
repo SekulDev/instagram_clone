@@ -1,17 +1,19 @@
 <script setup lang="ts">
-import { getAvatarUrl, getImageUrl } from "@/lib/utils";
+import { getAvatarUrl } from "@/lib/utils";
 import { Post } from "@/types";
 import { reactive } from "vue";
+import { useI18n } from "vue-i18n";
 
 import { usePostStore } from "@/stores/post";
 
 import { explore } from "@/services/explore";
 
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { Skeleton } from "@/components/ui/skeleton";
 
 import PostActionBar from "./post/PostActionBar.vue";
 import PostImage from "./post/PostImage.vue";
+
+const { t } = useI18n();
 
 const postStore = usePostStore();
 
@@ -50,7 +52,7 @@ function onPostClick(postId: number) {
             </span>
         </div>
         <span @click="onPostClick(post.id)" class="text-secondary-foreground cursor-pointer px-3 text-sm">
-            Zobacz komentarze
+            {{ t("components.mainPagePosts.seeComments") }}
         </span>
     </div>
 </template>

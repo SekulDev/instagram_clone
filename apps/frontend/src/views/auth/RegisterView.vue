@@ -2,6 +2,7 @@
 import { toTypedSchema } from "@vee-validate/zod";
 import { useField, useForm } from "vee-validate";
 import { ref, watch } from "vue";
+import { useI18n } from "vue-i18n";
 import { RouterLink, useRouter } from "vue-router";
 import * as z from "zod";
 
@@ -12,6 +13,8 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { FormControl, FormField, FormItem } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
+
+const { t } = useI18n();
 
 const router = useRouter();
 
@@ -71,7 +74,7 @@ watch([email, label, login, password], async (newValue) => {
                     <InstagramTextLogo class="h-auto w-[100%]" />
                 </CardTitle>
                 <CardDescription class="text-secondary-foreground text-center font-semibold">
-                    Zarejestruj się, aby przeglądać zdjęcia i filmy znajomych
+                    {{ t("pages.auth.register.title") }}
                 </CardDescription>
             </CardHeader>
             <CardContent class="pb-0">
@@ -83,7 +86,11 @@ watch([email, label, login, password], async (newValue) => {
                     <FormField v-slot="{ componentField }" name="email">
                         <FormItem>
                             <FormControl>
-                                <Input type="email" placeholder="Adres email" v-bind="componentField" />
+                                <Input
+                                    type="email"
+                                    :placeholder="t('pages.auth.register.emailPlaceholder')"
+                                    v-bind="componentField"
+                                />
                             </FormControl>
                         </FormItem>
                     </FormField>
@@ -91,7 +98,11 @@ watch([email, label, login, password], async (newValue) => {
                     <FormField v-slot="{ componentField }" name="label">
                         <FormItem>
                             <FormControl>
-                                <Input type="text" placeholder="Imię nazwisko" v-bind="componentField" />
+                                <Input
+                                    type="text"
+                                    :placeholder="t('pages.auth.register.namePlaceholder')"
+                                    v-bind="componentField"
+                                />
                             </FormControl>
                         </FormItem>
                     </FormField>
@@ -99,7 +110,11 @@ watch([email, label, login, password], async (newValue) => {
                     <FormField v-slot="{ componentField }" name="login">
                         <FormItem>
                             <FormControl>
-                                <Input type="text" placeholder="Nazwa użytkownika" v-bind="componentField" />
+                                <Input
+                                    type="text"
+                                    :placeholder="t('pages.auth.register.usernamePlaceholder')"
+                                    v-bind="componentField"
+                                />
                             </FormControl>
                         </FormItem>
                     </FormField>
@@ -107,24 +122,33 @@ watch([email, label, login, password], async (newValue) => {
                     <FormField v-slot="{ componentField }" name="password">
                         <FormItem>
                             <FormControl>
-                                <Input type="password" placeholder="Hasło" v-bind="componentField" />
+                                <Input
+                                    type="password"
+                                    :placeholder="t('pages.auth.register.passwordPlaceholder')"
+                                    v-bind="componentField"
+                                />
                             </FormControl>
                         </FormItem>
                     </FormField>
 
                     <div class="my-3 flex flex-col items-center">
                         <span v-if="errorMessage" class="text-destructive text-center text-sm font-thin">
-                            Wprowadzona przez ciebie nazwa użytkownika lub adres email już istnieją
+                            {{ t("pages.auth.register.errorMessage") }}
                         </span>
                     </div>
 
-                    <Button :disabled="disabled" class="mt-2" size="sm" type="submit">Dalej</Button>
+                    <Button :disabled="disabled" class="mt-2" size="sm" type="submit">{{
+                        t("pages.auth.register.submitButton")
+                    }}</Button>
                 </form>
             </CardContent>
         </Card>
         <Card class="w-[100%]">
             <CardContent class="flex items-center justify-center gap-2 p-5">
-                Masz konto? <RouterLink :to="{ name: 'Login' }" class="text-primary">Zaloguj się</RouterLink>
+                {{ t("pages.auth.register.alreadyHaveAccount") }}
+                <RouterLink :to="{ name: 'Login' }" class="text-primary">{{
+                    t("pages.auth.register.login")
+                }}</RouterLink>
             </CardContent>
         </Card>
     </div>

@@ -2,12 +2,15 @@
 import { getImageUrl } from "@/lib/utils";
 import { Post } from "@/types";
 import { computed } from "vue";
+import { useI18n } from "vue-i18n";
 
 import { CommentIcon, LikeIcon } from "@repo/icons";
 
 import { usePostStore } from "@/stores/post";
 
 import { Skeleton } from "@/components/ui/skeleton";
+
+const { t } = useI18n();
 
 const postStore = usePostStore();
 
@@ -27,7 +30,7 @@ function onPostClick(postId: number) {
 </script>
 <template>
     <div class="flex w-[100%] justify-center gap-2">
-        <span class="border-foreground border-t py-3 text-sm font-semibold">POSTY</span>
+        <span class="border-foreground border-t py-3 text-sm font-semibold">{{ t("components.profile.posts") }}</span>
     </div>
     <div class="mb-5 grid w-[100%] auto-rows-max grid-cols-3 gap-1">
         <div

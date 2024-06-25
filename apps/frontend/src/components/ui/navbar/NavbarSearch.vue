@@ -2,6 +2,7 @@
 import { getAvatarUrl } from "@/lib/utils";
 import { Tag, User } from "@/types";
 import { reactive } from "vue";
+import { useI18n } from "vue-i18n";
 import { RouterLink } from "vue-router";
 
 import { searchTags } from "@/services/tag";
@@ -10,6 +11,8 @@ import { searchUsers } from "@/services/user";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Input } from "@/components/ui/input";
 import { SheetClose, SheetContent, SheetDescription, SheetHeader, SheetTitle } from "@/components/ui/sheet";
+
+const { t } = useI18n();
 
 const results = reactive<{ users: User[]; tags: Tag[] }>({ users: [], tags: [] });
 
@@ -51,14 +54,14 @@ async function onInput() {
 <template>
     <SheetContent side="left" class="rounded-r-2xl">
         <SheetHeader class="mb-4 border-b">
-            <SheetTitle class="text-2xl">Szukaj</SheetTitle>
+            <SheetTitle class="text-2xl">{{ t("navbar.search") }}</SheetTitle>
             <SheetDescription class="my-7">
                 <Input
                     @input="onInput"
                     v-model="input"
                     class="bg-secondary border-none"
                     autocomplete="off"
-                    placeholder="Szukaj"
+                    :placeholder="t('navbar.search')"
                 />
             </SheetDescription>
         </SheetHeader>
@@ -90,7 +93,7 @@ async function onInput() {
                 <Avatar size="base" class="!bg-background !text-foreground border-foreground/60 border"> # </Avatar>
                 <div class="flex flex-col text-sm">
                     <span class="font-bold">#{{ tag.name }}</span>
-                    <span class="text-secondary-foreground">{{ tag.popularity }} postów</span>
+                    <span class="text-secondary-foreground">{{ tag.popularity }} {{ t("navbar.searchPosts") }}</span>
                 </div>
             </RouterLink>
         </SheetClose>

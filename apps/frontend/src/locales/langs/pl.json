@@ -1,0 +1,111 @@
+{
+    "pages": {
+        "notFound": {
+            "title": "Przepraszamy, ta strona jest niedostępna",
+            "description": "Kliknięty link mógł być uszkodzony lub strona mogła zostać usunięta.",
+            "back": "Wróć do Instagramu."
+        },
+        "settings": {
+            "editProfile": "Edytuj profil",
+            "nameSurname": "Imię nazwisko",
+            "bio": "Biogram",
+            "submit": "Prześlij",
+            "changePhoto": "Zmień zdjęcie",
+            "changePassword": "Zmień hasło",
+            "changePasswordMessage": "Wysłaliśmy na twojego maila link do zmiany hasła."
+        },
+        "auth": {
+            "register": {
+                "title": "Zarejestruj się, aby przeglądać zdjęcia i filmy znajomych",
+                "emailPlaceholder": "Adres email",
+                "namePlaceholder": "Imię nazwisko",
+                "usernamePlaceholder": "Nazwa użytkownika",
+                "passwordPlaceholder": "Hasło",
+                "errorMessage": "Wprowadzona przez ciebie nazwa użytkownika lub adres email już istnieją",
+                "submitButton": "Dalej",
+                "alreadyHaveAccount": "Masz konto?",
+                "login": "Zaloguj się"
+            },
+            "login": {
+                "usernamePlaceholder": "Nazwa użytkownika lub adres email",
+                "passwordPlaceholder": "Hasło",
+                "submitButton": "Zaloguj się",
+                "errorMessage": "Niestety wprowadzone hasło lub nazwa użytkownika są niepoprawne",
+                "forgotPassword": "Nie pamiętasz hasła?",
+                "noAccount": "Nie masz konta?",
+                "register": "Zarejestruj się"
+            },
+            "forgotPassword": {
+                "title": "Problem z logowaniem?",
+                "description": "Wprowadź swój adres email, a my wyślemy ci link, który umożliwi odzyskanie dostępu do konta.",
+                "emailPlaceholder": "Adres email",
+                "submitButton": "Wyślij link do logowania",
+                "errorMessage": "Nie istnieje użytkownik o podanym przez ciebie adresie email.",
+                "successMessage": "Na podany przez ciebie adres email wysłaliśmy link do odzyskania konta.",
+                "or": "LUB",
+                "createAccount": "Utwórz nowe konto",
+                "backToLogin": "Powrót do logowania"
+            },
+            "changePassword": {
+                "title": "Zmiana hasła",
+                "description": "Wprowadź nowe hasło, którym chcesz się logować do konta.",
+                "passwordPlaceholder": "Hasło",
+                "confirmPasswordPlaceholder": "Powtórz hasło",
+                "submitButton": "Zmień hasło",
+                "errorMessage": "Link do zmiany hasła jest nieaktywny.",
+                "or": "LUB",
+                "createAccount": "Utwórz nowe konto",
+                "backToLogin": "Powrót do logowania"
+            }
+        }
+    },
+    "components": {
+        "tagsInput": {
+            "placeholder": "Dodaj tagi"
+        },
+        "mainPagePosts": {
+            "seeComments": "Zobacz komentarze"
+        },
+        "profile": {
+            "posts": "POSTY",
+            "editProfile": "Edytuj profil",
+            "follow": "Obserwuj",
+            "unfollow": "Przestań obserwować",
+            "postsCount": "Posty:",
+            "followers": "Obserwujący",
+            "following": "Obserwowani",
+            "sendDirectMessage": "Wyślij wiadomość prywatną"
+        },
+        "post": {
+            "likes": "Lubi to",
+            "likesCount": "Lubi to {count} użytkowników",
+            "commentPlaceholder": "Dodaj komentarz...",
+            "publishButton": "Opublikuj"
+        },
+        "create": {
+            "uploadDialogTitle": "Utwórz nowy post",
+            "selectImages": "Wybierz swoje zdjęcia",
+            "selectFromComputer": "Wybierz z komputera",
+            "cropperDialogTitle": "Przytnij obraz",
+            "nextButton": "Dalej",
+            "edit": "Edytuj",
+            "filters": "Filtry",
+            "formDialogTitle": "Utwórz post",
+            "shareButton": "Udostępnij",
+            "addDescriptionPlaceholder": "Dodaj opis",
+            "addTagsPlaceholder": "Dodaj tagi"
+        }
+    },
+    "navbar": {
+        "home": "Strona główna",
+        "search": "Szukaj",
+        "explore": "Eksploruj",
+        "create": "Utwórz",
+        "profile": "Profil",
+        "more": "Więcej",
+        "settings": "Ustawienia",
+        "changeTheme": "Zmień wygląd",
+        "logout": "Wyloguj się",
+        "searchPosts": "postów"
+    }
+}

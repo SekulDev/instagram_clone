@@ -4,11 +4,14 @@ import { ArrowLeft } from "lucide-vue-next";
 import { ref, watch } from "vue";
 import { Cropper } from "vue-advanced-cropper";
 import "vue-advanced-cropper/dist/style.css";
+import { useI18n } from "vue-i18n";
 
 import { pickImages } from "@/services/content";
 
 import { Button } from "@/components/ui/button";
 import { DialogTitle } from "@/components/ui/dialog";
+
+const { t } = useI18n();
 
 const cropper = ref(null);
 const currentIndex = ref<number>(0);
@@ -90,8 +93,10 @@ function removeImage(index: number) {
         class="text-foreground text-md flex items-center justify-between border-b border-white/10 px-2 py-1 text-center"
     >
         <ArrowLeft class="hover:text-secondary-foreground cursor-pointer" @click="emit('setPage', 0)" />
-        <span>Przytnij</span>
-        <Button variant="ghost" class="text-primary" @click="emit('setPage', 2)"> Dalej </Button>
+        <span>{{ t("components.create.cropperDialogTitle") }}</span>
+        <Button variant="ghost" class="text-primary" @click="emit('setPage', 2)">
+            {{ t("components.create.nextButton") }}
+        </Button>
     </DialogTitle>
     <div class="flex aspect-[4/5] h-full flex-1 items-center justify-center">
         <Cropper

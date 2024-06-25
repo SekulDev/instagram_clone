@@ -1,0 +1,111 @@
+{
+    "pages": {
+        "notFound": {
+            "title": "Sorry, this page is unavailable",
+            "description": "The link you clicked may be broken or the page may have been removed.",
+            "back": "Go back to Instagram."
+        },
+        "settings": {
+            "editProfile": "Edit Profile",
+            "nameSurname": "Name Surname",
+            "bio": "Bio",
+            "submit": "Submit",
+            "changePhoto": "Change Photo",
+            "changePassword": "Change Password",
+            "changePasswordMessage": "We have sent a password reset link to your email."
+        },
+        "auth": {
+            "register": {
+                "title": "Sign up to see photos and videos from your friends",
+                "emailPlaceholder": "Email address",
+                "namePlaceholder": "Full name",
+                "usernamePlaceholder": "Username",
+                "passwordPlaceholder": "Password",
+                "errorMessage": "The username or email address you entered already exists",
+                "submitButton": "Sign up",
+                "alreadyHaveAccount": "Already have an account?",
+                "login": "Log in"
+            },
+            "login": {
+                "usernamePlaceholder": "Username or email address",
+                "passwordPlaceholder": "Password",
+                "submitButton": "Log in",
+                "errorMessage": "The username or password you entered is incorrect",
+                "forgotPassword": "Forgot password?",
+                "noAccount": "Don't have an account?",
+                "register": "Sign up"
+            },
+            "forgotPassword": {
+                "title": "Having trouble logging in?",
+                "description": "Enter your email address, and we'll send you a link to get back into your account.",
+                "emailPlaceholder": "Email address",
+                "submitButton": "Send login link",
+                "errorMessage": "No user found with the given email address.",
+                "successMessage": "We have sent a link to your email address to recover your account.",
+                "or": "OR",
+                "createAccount": "Create a new account",
+                "backToLogin": "Back to login"
+            },
+            "changePassword": {
+                "title": "Change Password",
+                "description": "Enter the new password you want to use to log into your account.",
+                "passwordPlaceholder": "Password",
+                "confirmPasswordPlaceholder": "Confirm Password",
+                "submitButton": "Change Password",
+                "errorMessage": "The password reset link is inactive.",
+                "or": "OR",
+                "createAccount": "Create a new account",
+                "backToLogin": "Back to login"
+            }
+        }
+    },
+    "components": {
+        "tagsInput": {
+            "placeholder": "Add tags"
+        },
+        "mainPagePosts": {
+            "seeComments": "See comments"
+        },
+        "profile": {
+            "posts": "POSTS",
+            "editProfile": "Edit profile",
+            "follow": "Follow",
+            "unfollow": "Unfollow",
+            "postsCount": "Posts:",
+            "followers": "Followers",
+            "following": "Following",
+            "sendDirectMessage": "Send a message"
+        },
+        "post": {
+            "likes": "Likes",
+            "likesCount": "{count} users like it",
+            "commentPlaceholder": "Add a comment...",
+            "publishButton": "Publish"
+        },
+        "create": {
+            "uploadDialogTitle": "Create a new post",
+            "selectImages": "Select your images",
+            "selectFromComputer": "Select from computer",
+            "cropperDialogTitle": "Crop Image",
+            "nextButton": "Next",
+            "edit": "Edit",
+            "filters": "Filters",
+            "formDialogTitle": "Create Post",
+            "shareButton": "Share",
+            "addDescriptionPlaceholder": "Add description",
+            "addTagsPlaceholder": "Add tags"
+        }
+    },
+    "navbar": {
+        "home": "Home",
+        "search": "Search",
+        "explore": "Explore",
+        "create": "Create",
+        "profile": "Profile",
+        "more": "More",
+        "settings": "Settings",
+        "changeTheme": "Change theme",
+        "logout": "Logout",
+        "searchPosts": "posts"
+    }
+}

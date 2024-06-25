@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { NavbarItemProps } from "@/types";
 import { ref } from "vue";
+import { useI18n } from "vue-i18n";
 import { RouterLink, useRouter } from "vue-router";
 
 import { DarkModeIcon, InstagramIcon, LightModeIcon, MoreIcon, SettingsIcon } from "@repo/icons";
@@ -20,6 +21,8 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { NavbarItem, NavbarSearch } from "@/components/ui/navbar";
 import { Sheet, SheetTrigger } from "@/components/ui/sheet";
+
+const { t } = useI18n();
 
 const props = defineProps<{
     items: NavbarItemProps[];
@@ -77,20 +80,22 @@ function onLogout() {
 
                 <DropdownMenuTrigger as-child class="hidden md:block">
                     <Button variant="ghost">
-                        <NavbarItem label="Więcej" :icon="MoreIcon" />
+                        <NavbarItem :label="t('navbar.more')" :icon="MoreIcon" />
                     </Button>
                 </DropdownMenuTrigger>
                 <DropdownMenuContent>
                     <DropdownMenuItem as-child>
-                        <RouterLink :to="{ name: 'Settings' }"> <SettingsIcon /> Ustawienia </RouterLink>
+                        <RouterLink :to="{ name: 'Settings' }">
+                            <SettingsIcon /> {{ t("navbar.settings") }}
+                        </RouterLink>
                     </DropdownMenuItem>
                     <DropdownMenuItem :onclick="themeStore.toggleTheme">
                         <DarkModeIcon v-if="themeStore.isDark" />
                         <LightModeIcon v-if="!themeStore.isDark" />
-                        Zmień wygląd
+                        {{ t("navbar.changeTheme") }}
                     </DropdownMenuItem>
                     <DropdownMenuSeparator />
-                    <DropdownMenuItem :onclick="onLogout">Wyloguj się</DropdownMenuItem>
+                    <DropdownMenuItem :onclick="onLogout">{{ t("navbar.logout") }}</DropdownMenuItem>
                 </DropdownMenuContent>
             </DropdownMenu>
         </nav>

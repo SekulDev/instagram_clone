@@ -2,6 +2,7 @@
 import { toTypedSchema } from "@vee-validate/zod";
 import { useField, useForm } from "vee-validate";
 import { ref, watch } from "vue";
+import { useI18n } from "vue-i18n";
 import { RouterLink, useRouter } from "vue-router";
 import * as z from "zod";
 
@@ -12,6 +13,8 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { FormControl, FormField, FormItem } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
+
+const { t } = useI18n();
 
 const router = useRouter();
 
@@ -66,7 +69,7 @@ watch<[typeof username, typeof password]>([username, password], (newValue) => {
                             <FormControl>
                                 <Input
                                     type="text"
-                                    placeholder="Nazwa użytkownika lub adres email"
+                                    :placeholder="t('pages.auth.login.usernamePlaceholder')"
                                     v-bind="componentField"
                                 />
                             </FormControl>
@@ -76,12 +79,18 @@ watch<[typeof username, typeof password]>([username, password], (newValue) => {
                     <FormField v-slot="{ componentField }" name="password">
                         <FormItem>
                             <FormControl>
-                                <Input type="password" placeholder="Hasło" v-bind="componentField" />
+                                <Input
+                                    type="password"
+                                    :placeholder="t('pages.auth.login.passwordPlaceholder')"
+                                    v-bind="componentField"
+                                />
                             </FormControl>
                         </FormItem>
                     </FormField>
 
-                    <Button :disabled="disabled" class="mt-2" size="sm" type="submit">Zaloguj się</Button>
+                    <Button :disabled="disabled" class="mt-2" size="sm" type="submit">{{
+                        t("pages.auth.login.submitButton")
+                    }}</Button>
 
                     <div class="mt-4 flex w-[100%] items-center justify-around gap-2">
                         <div class="bg-border relative flex h-[1px] flex-1"></div>
@@ -89,13 +98,13 @@ watch<[typeof username, typeof password]>([username, password], (newValue) => {
 
                     <div class="my-3 flex flex-col items-center">
                         <span v-if="errorMessage" class="text-destructive text-center text-sm font-thin">
-                            Niestety wprowadzone hasło lub nazwa użytkownika są niepoprawne
+                            {{ t("pages.auth.login.errorMessage") }}
                         </span>
                         <RouterLink
                             :to="{ name: 'ForgotPassword' }"
                             class="text-primary mt-6 text-center text-sm font-thin"
                         >
-                            Nie pamiętasz hasła?
+                            {{ t("pages.auth.login.forgotPassword") }}
                         </RouterLink>
                     </div>
                 </form>
@@ -103,7 +112,10 @@ watch<[typeof username, typeof password]>([username, password], (newValue) => {
         </Card>
         <Card class="w-[100%]">
             <CardContent class="flex items-center justify-center gap-2 p-5">
-                Nie masz konta? <RouterLink :to="{ name: 'Register' }" class="text-primary">Zarejestruj się</RouterLink>
+                {{ t("pages.auth.login.noAccount") }}
+                <RouterLink :to="{ name: 'Register' }" class="text-primary">{{
+                    t("pages.auth.login.register")
+                }}</RouterLink>
             </CardContent>
         </Card>
     </div>

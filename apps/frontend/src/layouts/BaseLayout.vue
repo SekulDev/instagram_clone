@@ -15,6 +15,7 @@
 import { getAvatarUrl } from "@/lib/utils";
 import { NavbarItemProps } from "@/types";
 import { ref } from "vue";
+import { useI18n } from "vue-i18n";
 import { RouterView } from "vue-router";
 
 import {
@@ -32,6 +33,8 @@ import CreateModal from "@/components/create/CreateModal.vue";
 import PostModal from "@/components/post/PostModal.vue";
 import { Navbar } from "@/components/ui/navbar";
 
+const { t } = useI18n();
+
 const postStore = usePostStore();
 
 const { user } = useUserStore();
@@ -44,45 +47,29 @@ function onUpdateCreateOpen(val: boolean) {
 
 const items: NavbarItemProps[] = [
     {
-        label: "Strona główna",
+        label: t("navbar.home"),
         icon: HomeIcon,
         route: { name: "Home" },
     },
     {
-        label: "Szukaj",
+        label: t("navbar.search"),
         icon: SearchIcon,
         isSearch: true,
     },
     {
-        label: "Eksploruj",
+        label: t("navbar.explore"),
         icon: ExploreIcon,
         route: { name: "Explore" },
     },
-    // {
-    //     label: "Rolki",
-    //     icon: ReelsIcon,
-    //     // route: { name: "Reels" },
-    // },
-    // {
-    //     label: "Wiadomości",
-    //     icon: DirectMessagesIcon,
-    //     // route: { name: "Messages" },
-    // },
-    // {
-    //     label: "Powiadomienia",
-    //     icon: NotificationIcon,
-    //     // route: { name: "Notifications" },
-    // },
     {
-        label: "Utwórz",
+        label: t("navbar.create"),
         icon: CreateIcon,
         onClick: () => {
             isCreateOpen.value = true;
         },
-        // route: { name: "Create" },
     },
     {
-        label: "Profil",
+        label: t("navbar.profile"),
         avatar: getAvatarUrl(user?.avatar_url || ""),
         route: { name: "Profile", params: { username: user?.login } },
     },

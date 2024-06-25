@@ -6,6 +6,7 @@ import { ArrowLeft } from "lucide-vue-next";
 import { ChevronLeft, ChevronRight } from "lucide-vue-next";
 import { useForm } from "vee-validate";
 import { computed, reactive, ref, watch } from "vue";
+import { useI18n } from "vue-i18n";
 import * as z from "zod";
 
 import { useUserStore } from "@/stores/user";
@@ -19,6 +20,8 @@ import { Button } from "@/components/ui/button";
 import { DialogTitle } from "@/components/ui/dialog";
 import { FormControl, FormField } from "@/components/ui/form";
 import { Textarea } from "@/components/ui/textarea";
+
+const { t } = useI18n();
 
 const tags = reactive<{ value: string[] }>({ value: [] });
 
@@ -127,8 +130,10 @@ const currentImage = computed(() => {
         class="text-foreground text-md flex items-center justify-between border-b border-white/10 px-2 py-1 text-center"
     >
         <ArrowLeft class="hover:text-secondary-foreground cursor-pointer" @click="emit('setPage', 2)" />
-        <span>Utwórz post</span>
-        <Button variant="ghost" class="text-primary" @click="onSubmit"> Udostępnij </Button>
+        <span>{{ t("components.create.formDialogTitle") }}</span>
+        <Button variant="ghost" class="text-primary" @click="onSubmit">
+            {{ t("components.create.shareButton") }}
+        </Button>
     </DialogTitle>
     <form class="flex aspect-[8/5] h-full flex-1 items-center">
         <div class="relative h-full w-1/2">
@@ -163,12 +168,12 @@ const currentImage = computed(() => {
                 <FormControl>
                     <Textarea
                         class="no-scrollbar placeholder:text-secondary-foreground !focus-visible:ring-0 h-40 resize-none border-none bg-transparent outline-none focus:border-none focus:outline-none focus:ring-0 focus:ring-offset-0"
-                        placeholder="Dodaj opis"
+                        :placeholder="t('components.create.addDescriptionPlaceholder')"
                         v-bind="componentField"
                     />
                 </FormControl>
             </FormField>
-            <TagsInput placeholder="Dodaj tagi" :model="tags.value" />
+            <TagsInput :placeholder="t('components.create.addTagsPlaceholder')" :model="tags.value" />
         </div>
     </form>
 </template>

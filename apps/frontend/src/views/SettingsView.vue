@@ -3,6 +3,7 @@ import { toTypedSchema } from "@vee-validate/zod";
 import { Trash2 } from "lucide-vue-next";
 import { useForm } from "vee-validate";
 import { ref } from "vue";
+import { useI18n } from "vue-i18n";
 import * as z from "zod";
 
 import { UpdateMeDto } from "@repo/types";
@@ -18,6 +19,8 @@ import { Button } from "@/components/ui/button";
 import { FormControl, FormField, FormItem, FormLabel } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
+
+const { t } = useI18n();
 
 const formSchema = toTypedSchema(
     z.object({
@@ -91,7 +94,7 @@ async function removeAvatar() {
 <template>
     <div class="flex h-[100%] w-[100%] justify-center px-4 pt-10">
         <div class="sm:w-11/12 md:w-6/12">
-            <h2 class="mb-10 text-xl font-semibold">Edytuj profil</h2>
+            <h2 class="mb-10 text-xl font-semibold">{{ t("pages.settings.editProfile") }}</h2>
             <div class="bg-secondary mb-10 flex items-center justify-between rounded-xl p-5">
                 <div class="flex gap-2">
                     <Avatar size="base" class="avatar-hover relative h-14 w-14">
@@ -112,17 +115,19 @@ async function removeAvatar() {
                         <span class="text-secondary-foreground text-sm">{{ user?.label }}</span>
                     </div>
                 </div>
-                <Button size="sm" @click="changeImage">Zmień zdjęcie</Button>
+                <Button size="sm" @click="changeImage">{{ t("pages.settings.changePhoto") }}</Button>
             </div>
             <form class="flex flex-col gap-8" @submit="onSubmit">
                 <FormField v-slot="{ componentField }" name="label">
                     <FormItem class="grid w-full">
-                        <FormLabel class="text-md !text-foreground font-bold">Imię nazwisko</FormLabel>
+                        <FormLabel class="text-md !text-foreground font-bold">{{
+                            t("pages.settings.nameSurname")
+                        }}</FormLabel>
                         <FormControl>
                             <Input
                                 class="placeholder:text-secondary-foreground resize-none rounded-xl"
                                 id="label"
-                                placeholder="Imię nazwisko"
+                                :placeholder="t('pages.settings.nameSurname')"
                                 v-bind="componentField"
                                 :default-value="user?.label"
                             />
@@ -131,12 +136,12 @@ async function removeAvatar() {
                 </FormField>
                 <FormField v-slot="{ componentField }" name="bio">
                     <FormItem class="grid w-full">
-                        <FormLabel class="text-md font-bold">Biogram</FormLabel>
+                        <FormLabel class="text-md font-bold">{{ t("pages.settings.bio") }}</FormLabel>
                         <FormControl>
                             <Textarea
                                 class="placeholder:text-secondary-foreground no-scrollbar resize-none rounded-xl"
                                 id="bio"
-                                placeholder="Biogram"
+                                :placeholder="t('pages.settings.bio')"
                                 v-bind="componentField"
                                 :default-value="user?.bio"
                                 :maxlength="100"
@@ -145,13 +150,15 @@ async function removeAvatar() {
                     </FormItem>
                 </FormField>
                 <div class="flex w-full justify-end">
-                    <Button type="submit" class="px-8" size="sm">Prześlij</Button>
+                    <Button type="submit" class="px-8" size="sm">{{ t("pages.settings.submit") }}</Button>
                 </div>
             </form>
             <div class="mt-6 flex flex-col">
-                <Button @click="changePassword" variant="secondary" class="text-destructive">Zmień hasło</Button>
+                <Button @click="changePassword" variant="secondary" class="text-destructive">{{
+                    t("pages.settings.changePassword")
+                }}</Button>
                 <span class="text-primary text-sm" v-if="changePasswordMsg">
-                    Wysłalismy na twojego maila link do zmiany hasła
+                    {{ t("pages.settings.changePasswordMessage") }}
                 </span>
             </div>
         </div>

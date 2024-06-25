@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { getAvatarUrl } from "@/lib/utils";
 import { User } from "@/types";
+import { useI18n } from "vue-i18n";
 import { RouterLink } from "vue-router";
 
 import { follow, unfollow } from "@/services/follow";
@@ -8,6 +9,8 @@ import { follow, unfollow } from "@/services/follow";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import { Skeleton } from "@/components/ui/skeleton";
+
+const { t } = useI18n();
 
 const props = defineProps<{
     user?: User;
@@ -50,7 +53,7 @@ async function onFollowClick(isFollowing: number) {
             <div v-if="props.user" class="flex items-center gap-8">
                 <span class="text-lg">{{ props.user.login }}</span>
                 <Button size="sm" class="text-foreground" variant="secondary" v-if="props.isMe" as-child>
-                    <RouterLink :to="{ name: 'Settings' }"> Edytuj profil </RouterLink>
+                    <RouterLink :to="{ name: 'Settings' }"> {{ t("components.profile.editProfile") }} </RouterLink>
                 </Button>
                 <template v-else>
                     <Button
@@ -59,7 +62,7 @@ async function onFollowClick(isFollowing: number) {
                         variant="default"
                         v-if="props.user.is_following == 0"
                     >
-                        Obserwuj
+                        {{ t("components.profile.follow") }}
                     </Button>
                     <Button
                         @click="onFollowClick(props.user.is_following)"
@@ -68,11 +71,11 @@ async function onFollowClick(isFollowing: number) {
                         variant="secondary"
                         v-if="props.user.is_following == 1"
                     >
-                        Przestań obserwować
+                        {{ t("components.profile.unfollow") }}
                     </Button>
                     <!-- <Button size="sm" class="text-foreground" variant="secondary" v-if="props.user.is_following == 1">
                         <RouterLink :to="{name: 'Messages', params: {username: props.user.login}}">
-                            Wyślij wiadomość
+                            {{ t('components.profile.sendDirectMessage') }}
                         </RouterLink>
                     </Button> -->
                 </template>
@@ -81,15 +84,15 @@ async function onFollowClick(isFollowing: number) {
 
             <div v-if="props.user" class="flex items-center gap-8">
                 <span>
-                    Posty:
+                    {{ $t("components.profile.postsCount") }}
                     <span class="font-bold">{{ props.user.postsCount }}</span>
                 </span>
                 <span>
                     <span class="font-bold">{{ props.user.followersCount }}</span>
-                    obserwujących
+                    {{ t("components.profile.followers") }}
                 </span>
                 <span>
-                    Obserwowani:
+                    {{ t("components.profile.following") }}:
                     <span class="font-bold">{{ props.user.followingCount }}</span>
                 </span>
             </div>

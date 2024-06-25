@@ -2,10 +2,13 @@
 import { CreatePost } from "@/types";
 import { ArrowLeft } from "lucide-vue-next";
 import { computed, ref, watch } from "vue";
+import { useI18n } from "vue-i18n";
 
 import { Button } from "@/components/ui/button";
 import { DialogTitle } from "@/components/ui/dialog";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+
+const { t } = useI18n();
 
 const currentIndex = ref<number>(0);
 
@@ -88,8 +91,10 @@ function setFilter(filter: { name: string; filter: string }) {
         class="text-foreground text-md flex items-center justify-between border-b border-white/10 px-2 py-1 text-center"
     >
         <ArrowLeft class="hover:text-secondary-foreground cursor-pointer" @click="emit('setPage', 1)" />
-        <span>Edytuj</span>
-        <Button variant="ghost" class="text-primary" @click="emit('setPage', 3)"> Dalej </Button>
+        <span>{{ t("components.create.edit") }}</span>
+        <Button variant="ghost" class="text-primary" @click="emit('setPage', 3)">
+            {{ t("components.create.nextButton") }}
+        </Button>
     </DialogTitle>
     <div class="flex aspect-[8/5] h-full flex-1 items-center">
         <div class="relative h-full w-1/2">
@@ -117,7 +122,7 @@ function setFilter(filter: { name: string; filter: string }) {
         <div class="aspect-[4/5] h-full">
             <Tabs default-value="filters" class="h-full">
                 <TabsList class="grid w-full grid-cols-1">
-                    <TabsTrigger value="filters"> Filtry </TabsTrigger>
+                    <TabsTrigger value="filters">{{ t("components.create.filters") }}</TabsTrigger>
                     <!-- <TabsTrigger value="regulations"> Regulacje </TabsTrigger> -->
                 </TabsList>
                 <TabsContent value="filters" class="no-scrollbar h-full overflow-y-scroll pb-40">

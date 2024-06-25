@@ -63,7 +63,7 @@ watch(
                 </span>
 
                 <span class="text-secondary-foreground mt-3 block">{{
-                    new Date(props.post.created_at).toLocaleDateString("pl-PL")
+                    new Date(props.post.created_at).toLocaleDateString()
                 }}</span>
             </span>
         </div>
@@ -81,7 +81,7 @@ watch(
                 {{ comment.content }}
 
                 <span class="text-secondary-foreground mt-1 block">{{
-                    new Date(comment.created_at).toLocaleDateString("pl-PL")
+                    new Date(comment.created_at).toLocaleDateString()
                 }}</span>
             </span>
         </div>

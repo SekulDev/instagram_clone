@@ -3,6 +3,7 @@ import { Comment, Post } from "@/types";
 import { toTypedSchema } from "@vee-validate/zod";
 import { useField, useForm } from "vee-validate";
 import { ref, watch } from "vue";
+import { useI18n } from "vue-i18n";
 import * as z from "zod";
 
 import { addPostComment } from "@/services/comment";
@@ -10,6 +11,8 @@ import { addPostComment } from "@/services/comment";
 import { Button } from "@/components/ui/button";
 import { FormControl, FormField } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
+
+const { t } = useI18n();
 
 const props = defineProps<{
     post: Post;
@@ -60,13 +63,15 @@ watch([content], async () => {
             <FormControl>
                 <Input
                     class="border-none outline-none focus:outline-none focus:ring-0 focus:ring-offset-0"
-                    placeholder="Dodaj komentarz..."
+                    :placeholder="t('components.post.commentPlaceholder')"
                     v-bind="componentField"
                 />
             </FormControl>
             <!-- </FormItem> -->
         </FormField>
 
-        <Button :disabled="disabled" variant="ghost" type="submit" size="sm" class="text-primary">Opublikuj</Button>
+        <Button :disabled="disabled" variant="ghost" type="submit" size="sm" class="text-primary">{{
+            t("components.post.publishButton")
+        }}</Button>
     </form>
 </template>

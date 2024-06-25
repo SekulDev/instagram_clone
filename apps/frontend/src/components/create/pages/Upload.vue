@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { CreatePost } from "@/types";
+import { useI18n } from "vue-i18n";
 
 import { UploadImageIcon } from "@repo/icons";
 
@@ -7,6 +8,8 @@ import { pickImages } from "@/services/content";
 
 import { Button } from "@/components/ui/button";
 import { DialogTitle } from "@/components/ui/dialog";
+
+const { t } = useI18n();
 
 defineProps<{
     image: CreatePost["image"];
@@ -30,11 +33,11 @@ async function pick() {
     <DialogTitle
         class="text-foreground text-md flex w-full items-center justify-center border-b border-white/10 px-2 py-1 text-center"
     >
-        Utwórz nowy post
+        {{ t("components.create.uploadDialogTitle") }}
     </DialogTitle>
     <div class="flex aspect-[4/5] h-full flex-col items-center justify-center gap-2">
         <UploadImageIcon />
-        <span>Wybierz swoje zdjęcia</span>
-        <Button @click="pick">Wybierz z komputera</Button>
+        <span>{{ t("components.create.selectImages") }}</span>
+        <Button @click="pick">{{ t("components.create.selectFromComputer") }}</Button>
     </div>
 </template>

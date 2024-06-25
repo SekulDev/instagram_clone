@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { ComboboxAnchor, ComboboxInput, ComboboxPortal, ComboboxRoot } from "radix-vue";
 import { computed, reactive, ref, watch } from "vue";
+import { useI18n } from "vue-i18n";
 
 import { searchTags } from "@/services/tag";
 
@@ -12,6 +13,8 @@ import {
     TagsInputItemDelete,
     TagsInputItemText,
 } from "@/components/ui/tags-input";
+
+const { t } = useI18n();
 
 const props = defineProps<{
     placeholder: string;
@@ -76,7 +79,7 @@ const target = computed<HTMLElement>(() => {
 
         <ComboboxRoot v-model="modelValue" v-model:open="open" v-model:searchTerm="searchTerm" class="w-full">
             <ComboboxAnchor as-child>
-                <ComboboxInput placeholder="Dodaj tagi" as-child>
+                <ComboboxInput :placeholder="t('components.tagsInput.placeholder')" as-child>
                     <TagsInputInput
                         maxlength="40"
                         class="w-full px-3"

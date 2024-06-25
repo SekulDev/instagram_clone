@@ -2,6 +2,7 @@
 import { setClipboard } from "@/lib/utils";
 import { Post } from "@/types";
 import { ref, watch } from "vue";
+import { useI18n } from "vue-i18n";
 import { useRouter } from "vue-router";
 
 import { LikeIcon, PostCommentIcon, PostLikeIcon, ShareIcon } from "@repo/icons";
@@ -9,6 +10,8 @@ import { LikeIcon, PostCommentIcon, PostLikeIcon, ShareIcon } from "@repo/icons"
 import { env } from "@/config/env";
 
 import { like, unlike } from "@/services/like";
+
+const { t } = useI18n();
 
 const props = defineProps<{
     post: Post;
@@ -61,7 +64,7 @@ function copy() {
             <ShareIcon @click="copy" class="hover:text-secondary-foreground h-6 w-6 cursor-pointer" />
         </div>
         <div class="pointer-events-none py-2 text-sm">
-            Lubi to <span class="font-semibold">{{ props.post.likes }} użytkowników</span>
+            <span class="font-semibold">{{ t("components.post.likesCount", props.post.likes) }}</span>
         </div>
     </div>
 </template>

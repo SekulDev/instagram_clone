@@ -1,10 +1,13 @@
 <script setup lang="ts">
 import { computed } from "vue";
+import { useI18n } from "vue-i18n";
 import { useRoute } from "vue-router";
 
 import ExplorePosts from "@/components/ExplorePosts.vue";
 import Title from "@/components/Title.vue";
 import { Skeleton } from "@/components/ui/skeleton";
+
+const { t } = useI18n();
 
 const route = useRoute();
 const tag = route.params.tag as string;
@@ -16,7 +19,7 @@ const postsCount = computed(() => {
 });
 
 const title = computed(() => {
-    return tag ? "#" + tag : "Eksploruj";
+    return tag ? "#" + tag : t("navbar.explore");
 });
 </script>
 <template>

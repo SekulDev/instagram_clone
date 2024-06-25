@@ -20,6 +20,46 @@
 ![SASS](https://img.shields.io/badge/SASS-hotpink.svg?style=for-the-badge&logo=SASS&logoColor=white)
 ![Axios](https://img.shields.io/badge/AXIOS-blueviolet.svg?style=for-the-badge&logo=data%3Aimage%2Fpng%3Bbase64%2CiVBORw0KGgoAAAANSUhEUgAAAC4AAAApCAMAAAB9Yuu9AAAAe1BMVEVnHd9oH99qIt9yLeF0MOF%2BP%2BSDRuWMVOeTX%2BiUYOiYZemeb%2BqfceunfOyyje%2B6mPDFqfPJrvTMs%2FTPuPXRu%2FbYxffZxvfZx%2Ffayfjf0Pni1Pnl2Prs4vvs4%2Fvu5fzu5vzv6Pzy6%2F318P349P769%2F76%2BP77%2BP79%2FP%2F%2F%2F%2F9VmOneAAAAg0lEQVR42u3UNQIDMRBDUS06zMycuf8FA61ZTXB%2F%2FQyVIFQVd%2FKhODr3bXzh0MuiznymBoIfGX5pjgi%2BLUHwWQaCdxPE81MDIPh6MpkM4vmzzTt5xTOlVOsYzR%2BpgxC8fSU%2Bk%2FaYv%2BdzIXhnJwQnVmwLjF38YLk96YmLr8RoP6UnteJ32j4RLwzsP6sAAAAASUVORK5CYII%3D)
 
+### ABOUT
+
+This Instagram Clone started as a school project, but I found it intriguing and decided to enhance and expand it further. During my free time, I plan to develop additional features to improve its functionality.
+
+### GET STARTED
+
+Make sure you have node.js (20+)<br/>
+
+_Clone this repo_
+
+```console
+git clone https://github.com/SekulDev/instagram_clone.git
+```
+
+Go to repo directory
+
+```console
+cd instagram_clone
+```
+
+Install all dependencies
+
+```console
+npm i
+```
+
+Copy example of ENV file
+
+```console
+cp .env.example .env
+```
+
+**Put your environment variables into `.env` file**
+
+Run project in develop mode
+
+```console
+npm run dev
+```
+
 ### FEATURES
 
 -   Base

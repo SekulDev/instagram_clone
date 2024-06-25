@@ -69,6 +69,7 @@ npm run dev
     -   Logging to account
     -   Registering new account
     -   Changing password if forgot
+    -   Sendning mail to change password
 -   Settings
     -   changing / deleting avatar
     -   changing account label

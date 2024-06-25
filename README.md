@@ -65,6 +65,7 @@ npm run dev
 -   Base
     -   UI almost copied from real instagram
     -   light / dark mode
+    -   English and Polish locales
 -   Authorization
     -   Logging to account
     -   Registering new account
